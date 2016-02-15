@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:30:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/15 23:48:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		mouse_click(int x, int y, int button, void *userdata)
 int		mouse_move(int x, int y, void *userdata)
 {
 	(void)userdata;
-	(void) x;
-	(void) y;
+	(void)x;
+	(void)y;
 	return (0);
 }
