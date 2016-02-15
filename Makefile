@@ -13,15 +13,18 @@
 NAME=fractol
 FLAGS=-Wall -Werror -Wextra -Weverything
 CC=clang
-OBJ=main.o
+OBJ=main.o events.o
+DRAW_PATH=./libs/draw/
+DRAW=$(DRAW_PATH)libdraw.a
+LINKER=-L$(DRAW_PATH) -ldraw -L./libs/libft -lft -lm -L./libs/minilibx_macos -lmlx -framework AppKit -framework OpenGL
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ) $(DRAW)
+	$(CC) $(OBJ) -o $(NAME) $(LINKER)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -c $< -I $(DRAW_PATH) -I ./libs/libft
 
 clean:
 	$(RM) $(OBJ)
@@ -30,5 +33,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+$(DRAW):
+	make -C $(DRAW_PATH)
 
 .PHONY: clean fclean re

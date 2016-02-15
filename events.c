@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 16:19:05 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/15 16:22:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
-# include "draw.h"
+#include "fractol.h"
+#include "libft.h"
+#include <stdlib.h>
 
-typedef struct	s_contect
+int		key_down(int keycode, void *userdata)
 {
-	t_mlx		*x;
-}				t_context;
+	t_context	*c;
 
-int				key_down(int keycode, void *userdata);
-int				main(int ac, char **av);
-
-#endif
+	c = userdata;
+	if (keycode == 53)
+		exit(0);
+	ft_printf("keydown: %d\n", keycode);
+	return (0);
+}
