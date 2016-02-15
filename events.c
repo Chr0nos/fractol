@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:18:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/15 23:30:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		key_down(int keycode, void *userdata)
 	t_context	*c;
 
 	c = userdata;
-	if (keycode == 53)
+	if ((keycode == 53) || (keycode == 12))
 		exit(0);
 	ft_printf("keydown: %d\n", keycode);
 	return (0);
