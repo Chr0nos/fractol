@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 16:19:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/15 23:17:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		main(int ac, char **av)
 	}
 	draw_sethook_ng(c.x, &closer, c.x, CLOSE);
 	draw_sethook_ng(c.x, &key_down, c.x, KEYDOWN);
+	draw_sethook_ng(c.x, &mouse_move, c.x, MOUSEMOVE);
+	draw_sethook_ng(c.x, &mouse_click, c.x, MOUSEDOWN);
 	display(&c);
 	draw_loop(c.x);
 	(void)ac;
