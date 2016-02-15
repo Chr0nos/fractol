@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:17:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/15 23:21:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ static int	closer(void *userdata)
 	exit(0);
 }
 
+static void	set_hooks(t_context *c)
+{
+	draw_sethook_ng(c->x, &closer, c, CLOSE);
+	draw_sethook_ng(c->x, &key_down, c, KEYDOWN);
+	draw_sethook_ng(c->x, &mouse_move, c, MOUSEMOVE);
+	draw_sethook_ng(c->x, &mouse_click, c, MOUSEDOWN);
+}
+
 int		main(int ac, char **av)
 {
 	t_context	c;
@@ -37,10 +45,7 @@ int		main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 		return (0);
 	}
-	draw_sethook_ng(c.x, &closer, c.x, CLOSE);
-	draw_sethook_ng(c.x, &key_down, c.x, KEYDOWN);
-	draw_sethook_ng(c.x, &mouse_move, c.x, MOUSEMOVE);
-	draw_sethook_ng(c.x, &mouse_click, c.x, MOUSEDOWN);
+	set_hooks(&c);
 	display(&c);
 	draw_loop(c.x);
 	(void)ac;
