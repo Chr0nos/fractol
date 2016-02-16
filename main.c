@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:48:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/16 21:58:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,21 @@ static int	display(t_context *c)
 	t_point		px;
 	int			h;
 	int			color;
+	t_rgb		rgb;
 
-	px.y = 600;
+	px.y = 0;
 	h = 0;
-	while (px.y--)
+	while (px.y < 600)
 	{
-		color = draw_color_hsv(h++, 255, 255);
-		px.x = 800;
-		while (px.x--)
+		rgb = draw_color_hsv(h++, 1.0f, 1.0f);
+		color = draw_color_rgb2int(&rgb);
+		px.x = 0;
+		while (px.x <= 800)
+		{
 			draw_px(c->x, &px, color);
+			px.x++;
+		}
+		px.y++;
 	}
 	draw_flush_image(c->x, c->x->img);
 	ft_putendl("display done");
