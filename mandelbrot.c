@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:44:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 18:55:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ inline static int	mandelbrot_core(t_mandelbrot *m)
 	return (1);
 }
 
+inline static int		mandelbrot_px_color(t_mandelbrot *m)
+{
+	t_rgb	rgb;
+
+	rgb.r = 0;
+	rgb.g = 0;
+	rgb.b = m->n * 255 / m->max_iterations;
+	return (draw_color_rgb2int(&rgb));
+}
+
 void				mandelbrot(t_context *c)
 {
 	t_mandelbrot	m;
@@ -59,7 +69,7 @@ void				mandelbrot(t_context *c)
 			m.z_re = m.c_re;
 			m.z_im = m.c_im;
 			if (!mandelbrot_core(&m))
-				draw_px(c->x, &px, COLOR_BLUE);
+				draw_px(c->x, &px, mandelbrot_px_color(&m));
 			px.x++;
 		}
 		px.y++;
