@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:20:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 19:14:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ static void	set_hooks(t_context *c)
 	draw_sethook_ng(c->x, &mouse_click, c, MOUSEDOWN);
 }
 
+static void init_displayer(int ac, char **av, t_context *c)
+{
+	int		p;
+
+	p = 1;
+	c->f = NULL;
+	while (p < ac)
+	{
+		if ((ft_strcmp(av[p], "-m")) || (ft_strcmp(av[p], "-mandelbrot")))
+			c->f = &mandelbrot;
+		else if ((ft_strcmp(av[p], "-r")) || (ft_strcmp(av[p], "-rainbow")))
+			c->f = &rainbow;
+		p++;
+	}
+	if (!c->f)
+		c->f = &rainbow;
+}
 int			main(int ac, char **av)
 {
 	t_context	c;
@@ -46,14 +63,9 @@ int			main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 		return (0);
 	}
-	c.f = &mandelbrot;
-	if (ac == 2)
-		c.f = &rainbow;
+	init_displayer(ac, av, &c);
 	set_hooks(&c);
-	draw_reset_image(c.x, 0);
 	display(&c);
 	draw_loop(c.x);
-	(void)ac;
-	(void)av;
 	return (0);
 }
