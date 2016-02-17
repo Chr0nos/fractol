@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 19:38:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 20:59:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,32 @@ static void init_displayer(int ac, char **av, t_context *c)
 	c->f = NULL;
 	while (p < ac)
 	{
-		if ((ft_strcmp(av[p], "-m")) || (ft_strcmp(av[p], "-mandelbrot")))
+		if ((!ft_strcmp(av[p], "-m")) || (!ft_strcmp(av[p], "-mandelbrot")))
 			c->f = &mandelbrot;
-		else if ((ft_strcmp(av[p], "-r")) || (ft_strcmp(av[p], "-rainbow")))
+		else if ((!ft_strcmp(av[p], "-r")) || (!ft_strcmp(av[p], "-rainbow")))
 			c->f = &rainbow;
+		else
+			ft_printf("error: unknow parameter: %s\n", av[p]);
 		p++;
 	}
-	if (!c->f)
-		c->f = &rainbow;
 }
+
 int			main(int ac, char **av)
 {
 	t_context	c;
 
-	if (!(c.x = draw_init("Fractol", 1024, 768)))
-	{
-		ft_putendl("error: failed to init window");
-		return (0);
-	}
 	init_displayer(ac, av, &c);
-	set_hooks(&c);
-	display(&c);
-	draw_loop(c.x);
+	if (!c.f)
+		ft_putendl("error: no renderer set: please use: \n\t-m for mandelbrot\n\t-r for rainbow");
+	else if (!(c.x = draw_init("Fractol", 1024, 768)))
+		ft_putendl("error: failed to init window");
+	else
+	{
+		ft_putendl("ready to work");
+		draw_reset_image(c.x, 0);
+		set_hooks(&c);
+		display(&c);
+		draw_loop(c.x);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 19:31:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 20:10:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ inline static int	mandelbrot_core(t_mandelbrot *m)
 	return (1);
 }
 
-inline static int		mandelbrot_px_color(t_mandelbrot *m)
+inline static int	mandelbrot_px_color(t_mandelbrot *m)
 {
 	t_rgb	rgb;
 
