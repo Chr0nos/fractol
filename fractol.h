@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 12:16:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:54:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_complex
 	float		ima;
 }				t_complex;
 
-typedef struct	s_contect
+typedef struct	s_context
 {
 	t_mlx		*x;
 }				t_context;

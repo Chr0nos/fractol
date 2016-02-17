@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rainbow.c                                          :+:      :+:    :+:   */
+/*   foreach_px.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 12:12:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 14:27:12 by snicolet         ###   ########.fr       */
+/*   Created: 2016/02/17 14:17:02 by snicolet          #+#    #+#             */
+/*   Updated: 2016/02/17 14:36:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-
-void	rainbow(t_context *c)
+void	foreach_px(t_mlx *x, void (*f)(const t_point *px, void *),
+		void *userdata)
 {
-	t_point		px;
-	int			h;
-	int			color;
-	t_rgb		rgb;
+	t_point	p;
 
-	px.y = 0;
-	h = 0;
-	while (px.y < c->x->height)
+	p.y = 0;
+	while (p.y < x->height)
 	{
-		px.x = 0;
-		rgb = draw_color_hsv(h++, 1.0f, 1.0f);
-		color = draw_color_rgb2int(&rgb);
-		while (px.x <= c->x->width)
+		p.x = 0;
+		while (p.x < x->width)
 		{
-			draw_px(c->x, &px, color);
-			px.x++;
+			f(&px, userdata);
+			p.x++;
 		}
-		px.y++;
+		p.y++;
 	}
 }
