@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/02/17 22:36:46 by snicolet         ###   ########.fr        #
+#    Updated: 2016/02/17 23:09:31 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,17 @@ CC=clang
 OBJ=main.o events.o mandelbrot.o rainbow.o foreach_px.o julia.o
 DRAW_PATH=./libs/draw/
 DRAW=$(DRAW_PATH)libdraw.a
-LINKER=-L$(DRAW_PATH) -ldraw -L./libs/libft -lft -lm -L./libs/minilibx_macos -lmlx -framework AppKit -framework OpenGL
+LIBFT_PATH=./libs/libft/
+LIBFT=$(LIBFT_PATH)libft.a
+LINKER=-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx_macos -lmlx -framework AppKit -framework OpenGL
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(DRAW)
+$(NAME): $(OBJ) $(DRAW) $(LIBFT)
 	$(CC) $(OBJ) -o $(NAME) $(LINKER) $(FLAGS)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -I $(DRAW_PATH) -I ./libs/libft
+	$(CC) $(FLAGS) -c $< -I $(DRAW_PATH) -I $(LIBFT_PATH)
 
 clean:
 	$(RM) $(OBJ)
@@ -36,5 +38,8 @@ re: fclean all
 
 $(DRAW):
 	make -C $(DRAW_PATH)
+
+$(LIBFT):
+	make -C $(LIBFT_PATH)
 
 .PHONY: clean fclean re
