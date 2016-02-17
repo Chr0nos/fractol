@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:24:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:25:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_complex
 typedef struct	s_context
 {
 	t_mlx			*x;
-	void		(*f)();
+	void			(*f)(struct s_context *);
 }				t_context;
 
 void			foreach_py(t_mlx *x, void (*f)(const t_point *, void *),
