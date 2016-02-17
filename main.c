@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 15:16:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:20:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 static int	display(t_context *c)
 {
-	//rainbow(c);
-	mandelbrot(c);
+	c->f(c);
 	draw_flush_image(c->x, c->x->img);
 	ft_putendl("display done");
 	return (0);
@@ -47,6 +46,9 @@ int			main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 		return (0);
 	}
+	c.f = &mandelbrot;
+	if (ac == 2)
+		c.f = &rainbow;
 	set_hooks(&c);
 	draw_reset_image(c.x, 0);
 	display(&c);
