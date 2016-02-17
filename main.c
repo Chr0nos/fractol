@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 22:47:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 23:19:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static void	init_displayer(int ac, char **av, t_context *c)
 	c->f = NULL;
 	while (p < ac)
 	{
-		if ((!ft_strcmp(av[p], "-m")) || (!ft_strcmp(av[p], "-mandelbrot")))
+		if ((!ft_strcmp(av[p], "-m")) || (!ft_strcmp(av[p], "mandelbrot")))
 			c->f = &mandelbrot;
-		else if ((!ft_strcmp(av[p], "-r")) || (!ft_strcmp(av[p], "-rainbow")))
+		else if ((!ft_strcmp(av[p], "-r")) || (!ft_strcmp(av[p], "rainbow")))
 			c->f = &rainbow;
-		else if ((!ft_strcmp(av[p], "-j")) || (!ft_strcmp(av[p], "-julia")))
+		else if ((!ft_strcmp(av[p], "-j")) || (!ft_strcmp(av[p], "julia")))
 			c->f = &julia;
 		else
 			ft_printf("error: unknow parameter: %s\n", av[p]);
