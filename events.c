@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:48:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:34:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		mouse_click(int x, int y, int button, void *userdata)
 	{
 		ft_printf("scroll requested on x:%d y:%d\n", x, y);
 	}
+	else
+		ft_printf("button %d\n", button);
 	return (0);
 }
 

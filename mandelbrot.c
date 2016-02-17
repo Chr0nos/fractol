@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:16:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:44:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ inline static int	mandelbrot_core(t_mandelbrot *m)
 {
 	double			z_re2;
 	double			z_im2;
-	unsigned int	n;
 
-	n = 0;
-	while (n < m->max_iterations)
+	m->n = 0;
+	while (m->n < m->max_iterations)
 	{
 		z_re2 = m->z_re * m->z_re;
 		z_im2 = m->z_im * m->z_im;
@@ -38,7 +37,7 @@ inline static int	mandelbrot_core(t_mandelbrot *m)
 			return (0);
 		m->z_im = 2 * m->z_re * m->z_im + m->c_im;
 		m->z_re = z_re2 - z_im2 + m->c_re;
-		n++;
+		m->n++;
 	}
 	return (1);
 }
@@ -59,7 +58,7 @@ void				mandelbrot(t_context *c)
 			m.c_re = m.min_re + px.x * m.re_factor;
 			m.z_re = m.c_re;
 			m.z_im = m.c_im;
-			if (mandelbrot_core(&m))
+			if (!mandelbrot_core(&m))
 				draw_px(c->x, &px, COLOR_BLUE);
 			px.x++;
 		}

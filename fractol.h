@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:25:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:35:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 enum			e_mousebutton
 {
-	LEFT = 1,
-	RIGHT = 2,
-	SCROLL = 3
+	LEFT = 249,
+	RIGHT = 242,
+	SCROLL = 361
 };
 
 typedef struct	s_complex
