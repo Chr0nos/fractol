@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 22:22:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 22:47:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	init_displayer(int ac, char **av, t_context *c)
 			c->f = &mandelbrot;
 		else if ((!ft_strcmp(av[p], "-r")) || (!ft_strcmp(av[p], "-rainbow")))
 			c->f = &rainbow;
+		else if ((!ft_strcmp(av[p], "-j")) || (!ft_strcmp(av[p], "-julia")))
+			c->f = &julia;
 		else
 			ft_printf("error: unknow parameter: %s\n", av[p]);
 		p++;
@@ -63,7 +65,10 @@ int			main(int ac, char **av)
 
 	init_displayer(ac, av, &c);
 	if (!c.f)
-		ft_putendl("error: no renderer set: please use: \n\t-m for mandelbrot\n\t-r for rainbow");
+		ft_printf("error: no renderer set : please use: \n\t%s\n\t%s\n\t%s\n",
+			"-m for mandelbrot",
+			"-j for julia",
+			"-r for rainbow");
 	else if (!(c.x = draw_init("Fractol", 1024, 768)))
 		ft_putendl("error: failed to init window");
 	else
