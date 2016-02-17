@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/16 21:58:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 12:14:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,7 @@
 
 static int	display(t_context *c)
 {
-	t_point		px;
-	int			h;
-	int			color;
-	t_rgb		rgb;
-
-	px.y = 0;
-	h = 0;
-	while (px.y < 600)
-	{
-		rgb = draw_color_hsv(h++, 1.0f, 1.0f);
-		color = draw_color_rgb2int(&rgb);
-		px.x = 0;
-		while (px.x <= 800)
-		{
-			draw_px(c->x, &px, color);
-			px.x++;
-		}
-		px.y++;
-	}
+	rainbow(c);
 	draw_flush_image(c->x, c->x->img);
 	ft_putendl("display done");
 	return (0);
@@ -65,6 +47,7 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	set_hooks(&c);
+	draw_reset_image(c.x, 0);
 	display(&c);
 	draw_loop(c.x);
 	(void)ac;

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/15 23:17:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 12:16:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_contect
 	t_mlx		*x;
 }				t_context;
 
+void			rainbow(t_context *c);
 void			mandelbrot(t_context *c);
 int				mouse_click(int x, int y, int button, void *userdata);
 int				key_down(int keycode, void *userdata);
