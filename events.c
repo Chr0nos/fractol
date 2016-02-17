@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:34:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 21:38:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int		key_down(int keycode, void *userdata)
 	c = userdata;
 	if ((keycode == 53) || (keycode == 12))
 		exit(0);
+	else if (keycode == 123)
+		c->zoom += 0.04f;
+	else if (keycode == 124)
+		c->zoom -= 0.04f;
+	display(c);
 	ft_printf("keydown: %d\n", keycode);
 	return (0);
 }

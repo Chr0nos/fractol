@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 20:59:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 22:22:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include "fractol.h"
 #include <stdlib.h>
 
-static int	display(t_context *c)
+int			display(t_context *c)
 {
+	draw_reset_image(c->x, 0);
 	c->f(c);
 	draw_flush_image(c->x, c->x->img);
 	ft_putendl("display done");
@@ -37,11 +38,12 @@ static void	set_hooks(t_context *c)
 	draw_sethook_ng(c->x, &mouse_click, c, MOUSEDOWN);
 }
 
-static void init_displayer(int ac, char **av, t_context *c)
+static void	init_displayer(int ac, char **av, t_context *c)
 {
 	int		p;
 
 	p = 1;
+	c->zoom = 0.0f;
 	c->f = NULL;
 	while (p < ac)
 	{
