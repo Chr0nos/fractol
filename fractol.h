@@ -6,13 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 13:54:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 15:23:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include "draw.h"
+# include "mandelbrot.h"
 
 enum			e_mousebutton
 {
@@ -29,9 +30,14 @@ typedef struct	s_complex
 
 typedef struct	s_context
 {
-	t_mlx		*x;
+	t_mlx			*x;
+	t_mandelbrot	m;
 }				t_context;
 
+void			foreach_py(t_mlx *x, void (*f)(const t_point *, void *),
+		void *userdata);
+void			foreach_px(t_mlx *x, void (*f)(const t_point *, void *),
+		void *userdata);
 void			rainbow(t_context *c);
 void			mandelbrot(t_context *c);
 int				mouse_click(int x, int y, int button, void *userdata);

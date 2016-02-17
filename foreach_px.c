@@ -6,12 +6,30 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 14:17:02 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 14:36:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 15:22:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	foreach_px(t_mlx *x, void (*f)(const t_point *px, void *),
-		void *userdata)
+#include "fractol.h"
+
+void	foreach_py(t_mlx *x, void (*f)(const t_point *, void *), void *userdata)
+{
+	t_point	p;
+
+	p.x = 0;
+	while (p.x < x->width)
+	{
+		p.y = 0;
+		while (p.y < x->height)
+		{
+			f(&p, userdata);
+			p.y++;
+		}
+		p.x++;
+	}
+}
+
+void	foreach_px(t_mlx *x, void (*f)(const t_point *, void *), void *userdata)
 {
 	t_point	p;
 
@@ -21,7 +39,7 @@ void	foreach_px(t_mlx *x, void (*f)(const t_point *px, void *),
 		p.x = 0;
 		while (p.x < x->width)
 		{
-			f(&px, userdata);
+			f(&p, userdata);
 			p.x++;
 		}
 		p.y++;

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 12:14:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 15:16:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 static int	display(t_context *c)
 {
-	rainbow(c);
+	//rainbow(c);
+	mandelbrot(c);
 	draw_flush_image(c->x, c->x->img);
 	ft_putendl("display done");
 	return (0);
