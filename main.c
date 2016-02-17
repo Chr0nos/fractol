@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 19:14:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 19:38:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			main(int ac, char **av)
 {
 	t_context	c;
 
-	if (!(c.x = draw_init("Fractol", 800, 600)))
+	if (!(c.x = draw_init("Fractol", 1024, 768)))
 	{
 		ft_putendl("error: failed to init window");
 		return (0);

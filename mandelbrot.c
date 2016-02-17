@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 18:55:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/17 19:31:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x)
 	m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
-	m->max_iterations = 30;
+	m->max_iterations = 50;
 }
 
 inline static int	mandelbrot_core(t_mandelbrot *m)
@@ -47,7 +47,7 @@ inline static int		mandelbrot_px_color(t_mandelbrot *m)
 	t_rgb	rgb;
 
 	rgb.r = 0;
-	rgb.g = 0;
+	rgb.g = m->n * 150 / m->max_iterations;
 	rgb.b = m->n * 255 / m->max_iterations;
 	return (draw_color_rgb2int(&rgb));
 }
