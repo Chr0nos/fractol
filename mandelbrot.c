@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 20:25:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:33:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
 	const double	zoom_factor = c->zoom * c->zoom_step;
 
-	m->min_re = -2.0f + zoom_factor + c->zoom_offsets.x;
+	m->min_re = -2.0f + zoom_factor;
 	m->max_re = 1.0f - zoom_factor;
 	m->min_im = -1.2f + (zoom_factor * 0.75);
 	//m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
