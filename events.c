@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 21:13:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 22:36:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int		key_down(int keycode, void *userdata)
 	c = userdata;
 	if ((keycode == 53) || (keycode == 12))
 		exit(0);
-	else if (keycode == 123)
-		c->zoom += c->zoom_step;
-	else if (keycode == 124)
-		c->zoom -= c->zoom_step;
+	else if ((keycode == 126) || ((keycode == 125) && (c->zoom >= c->zoom_step)))
+		c->zoom += (keycode == 126) ? c->zoom_step : -c->zoom_step;
 	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
 		c->color_offset += (keycode == 24) ? 8 : -8;
 	else if ((keycode == 0) || (keycode == 2))

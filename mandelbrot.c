@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 21:11:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 22:48:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 
 	m->min_re = -2.0f + zoom_factor;
 	m->max_re = 1.0f - zoom_factor;
-	m->min_im = -1.0f + (zoom_factor * 0.75);
-	//m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
-	m->max_im = 1.2f - (zoom_factor * 0.75);
+	m->min_im = -1.2f + (zoom_factor * 0.75f);
+	m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
-	printf("re_factor: %f -- im_factor: %f\n", m->re_factor, m->im_factor);
-	m->max_iterations = (unsigned int)(ft_abs(((int)(c->zoom * 20.0f))) + 32);
-	//ft_printf("mandelbrot max iterations: %d\n", (int)m->max_iterations);
+	printf("re_factor: %f -- im_factor: %f -- zoom: %f\n", m->re_factor,
+		m->im_factor, c->zoom);
+	m->max_iterations = (c->zoom > 7.0f) ? 256 : 64;
+	if ((c->zoom > 4.0) && (c->zoom < 7.0f))
+		m->max_iterations = 128;
 }
 
 /*
@@ -122,8 +123,7 @@ void				mandelbrot(t_context *c)
 		px.x = 0;
 		while (px.x < c->x->width)
 		{
-			mandelbrot_core(&m, m.min_re + px.x * m.re_factor +
-				c->zoom_offsets.x);
+			mandelbrot_core(&m, m.min_re + px.x * m.re_factor + c->zoom_offsets.x);
 			draw_px(c->x, &px, colors[m.n]);
 			px.x++;
 		}
