@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 20:46:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 21:11:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
@@ -25,8 +26,9 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 	m->max_im = 1.2f - (zoom_factor * 0.75);
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
-	//ft_printf("re_factor: %d -- im_factor: %d\n", m->re_factor, m->im_factor);
-	m->max_iterations = ft_abs((int)(c->zoom * 8.0f)) + 32;
+	printf("re_factor: %f -- im_factor: %f\n", m->re_factor, m->im_factor);
+	m->max_iterations = (unsigned int)(ft_abs(((int)(c->zoom * 20.0f))) + 32);
+	//ft_printf("mandelbrot max iterations: %d\n", (int)m->max_iterations);
 }
 
 /*

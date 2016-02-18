@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 01:24:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 21:13:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int		key_down(int keycode, void *userdata)
 		c->zoom_offsets.x += (keycode == 0) ? -0.1f : 0.1f;
 	else if ((keycode == 13) || (keycode == 1))
 		c->zoom_offsets.y += (keycode == 13) ? -0.1f : 0.1f;
+	else if (keycode == 83)
+		c->f = &sierpcarp;
+	else if (keycode == 84)
+		c->f = &mandelbrot;
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
