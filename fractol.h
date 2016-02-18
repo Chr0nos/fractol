@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 18:41:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 19:22:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct	s_context
 	double		zoom_step;
 	t_vector	zoom_offsets;
 	int			color_offset;
-	int			padding;
 }				t_context;
 
 void			rainbow(t_context *c);
