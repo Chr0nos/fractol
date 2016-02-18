@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/02/18 01:20:42 by snicolet         ###   ########.fr        #
+#    Updated: 2016/02/18 11:43:24 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,14 @@ fclean: clean
 
 re: fclean all
 
+relibs: re
+	make -C $(LIBFT_PATH) re
+	make -C $(DRAW_PATH) re
+
 $(DRAW):
 	make -C $(DRAW_PATH)
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-.PHONY: clean fclean re
+.PHONY: clean fclean re relibs all
