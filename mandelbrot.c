@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 01:45:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 19:33:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,20 @@ inline static void	mandelbrot_core(t_mandelbrot *m, const double c_re)
 {
 	double			z_re2;
 	double			z_im2;
+	double			z_re;
+	double			z_im;
 
+	z_re = 0.0f;
+	z_im = 0.0f;
 	m->n = 0;
 	while (m->n < m->max_iterations)
 	{
-		z_re2 = m->z_re * m->z_re;
-		z_im2 = m->z_im * m->z_im;
+		z_re2 = z_re * z_re;
+		z_im2 = z_im * z_im;
 		if (z_re2 + z_im2 > 4)
 			return ;
-		m->z_im = 2 * m->z_re * m->z_im + m->c_im;
-		m->z_re = z_re2 - z_im2 + c_re;
+		z_im = 2 * z_re * z_im + m->c_im;
+		z_re = z_re2 - z_im2 + c_re;
 		m->n++;
 	}
 }
@@ -102,8 +106,6 @@ void				mandelbrot(t_context *c)
 		px.x = 0;
 		while (px.x < c->x->width)
 		{
-			m.z_re = 0.0f;
-			m.z_im = 0.0f;
 			mandelbrot_core(&m, m.min_re + px.x * m.re_factor);
 			draw_px(c->x, &px, colors[m.n]);
 			px.x++;

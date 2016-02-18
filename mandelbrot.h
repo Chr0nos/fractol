@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 15:09:02 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 17:30:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 19:32:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ typedef struct		s_mandelbrot
 	double			im_factor;
 	double			c_im;
 	double			c_re;
-	double			z_re;
-	double			z_im;
 	unsigned int	max_iterations;
 	unsigned int	n;
 }					t_mandelbrot;
