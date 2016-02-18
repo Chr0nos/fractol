@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 19:22:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 23:27:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct	s_context
 	t_mlx		*x;
 	void		(*f)(struct s_context *);
 	double		zoom;
-	double		zoom_step;
 	t_vector	zoom_offsets;
 	int			color_offset;
 }				t_context;
