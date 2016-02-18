@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 01:04:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 01:45:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
 	m->max_iterations = 64;
 }
+
+/*
+** this function is called on each pixel of the window
+** so in the case of a 1024x768 it's called 786432 times per draw
+** return 1 if we need to trace the pixel
+** otherwise it will return 0
+*/
 
 inline static int	mandelbrot_core(t_mandelbrot *m)
 {
