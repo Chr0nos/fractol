@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 20:33:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:46:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 
 	m->min_re = -2.0f + zoom_factor;
 	m->max_re = 1.0f - zoom_factor;
-	m->min_im = -1.2f + (zoom_factor * 0.75);
+	m->min_im = -1.0f + (zoom_factor * 0.75);
 	//m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
 	m->max_im = 1.2f - (zoom_factor * 0.75);
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
+	//ft_printf("re_factor: %d -- im_factor: %d\n", m->re_factor, m->im_factor);
 	m->max_iterations = ft_abs((int)(c->zoom * 8.0f)) + 32;
 }
 

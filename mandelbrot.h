@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 15:09:02 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 19:32:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:40:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef struct		s_mandelbrot
 	double			max_re;
 	double			min_im;
 	double			max_im;
-	double			re_factor;
-	double			im_factor;
+	long double		re_factor;
+	long double		im_factor;
 	double			c_im;
 	double			c_re;
 	unsigned int	max_iterations;
