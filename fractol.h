@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 01:02:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 01:13:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_context
 	void			(*f)(struct s_context *);
 	double			zoom;
 	int				color_offset;
+	int				padding;
 }					t_context;
 
 void			foreach_py(t_mlx *x, void (*f)(const t_point *, void *),
