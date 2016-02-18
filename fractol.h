@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 01:13:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 01:22:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ typedef struct	s_context
 	int				padding;
 }					t_context;
 
-void			foreach_py(t_mlx *x, void (*f)(const t_point *, void *),
-		void *userdata);
-void			foreach_px(t_mlx *x, void (*f)(const t_point *, void *),
-		void *userdata);
 void			rainbow(t_context *c);
 void			mandelbrot(t_context *c);
 void			julia(t_context *c);
