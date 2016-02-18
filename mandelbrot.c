@@ -15,13 +15,16 @@
 
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
-	m->min_re = -2.0f + c->zoom;
-	m->max_re = 1.3f;
-	m->min_im = -1.0f + c->zoom;
-	m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
+	const double	zoom_factor  = c->zoom * c->zoom_step;
+
+	m->min_re = -2.0f + zoom_factor;
+	m->max_re = 1.0f - zoom_factor;
+	m->min_im = -1.2f + (zoom_factor * 0.75);
+	//m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
+	m->max_im = 1.2f - (zoom_factor * 0.75);
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
-	m->max_iterations = 64;
+	m->max_iterations = 150;
 }
 
 /*
@@ -97,8 +100,10 @@ void				mandelbrot(t_context *c)
 		while (px.x < c->x->width)
 		{
 			m.c_re = m.min_re + px.x * m.re_factor;
-			m.z_re = m.c_re;
-			m.z_im = m.c_im;
+			m.z_re = 0.0f;
+			m.z_im = 0.0f;
+			//m.z_re = m.c_re;
+			//m.z_im = m.c_im;
 			if (!mandelbrot_core(&m))
 				draw_px(c->x, &px, colors[m.n]);
 			px.x++;

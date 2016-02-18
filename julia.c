@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	julia(t_context *c)
+void				julia(t_context *c)
 {
 	(void)c;
 }

@@ -22,9 +22,9 @@ int		key_down(int keycode, void *userdata)
 	if ((keycode == 53) || (keycode == 12))
 		exit(0);
 	else if (keycode == 123)
-		c->zoom += 0.04f;
+		c->zoom += c->zoom_step;
 	else if (keycode == 124)
-		c->zoom -= 0.04f;
+		c->zoom -= c->zoom_step;
 	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
 		c->color_offset += (keycode == 24) ? 8 : -8;
 	else

@@ -43,6 +43,7 @@ static void	init_displayer(int ac, char **av, t_context *c)
 
 	p = 1;
 	c->zoom = 0.0f;
+	c->zoom_step = 0.2f;
 	c->f = NULL;
 	c->color_offset = 0;
 	while (p < ac)

@@ -33,6 +33,7 @@ typedef struct	s_context
 	t_mlx			*x;
 	void			(*f)(struct s_context *);
 	double			zoom;
+	double			zoom_step;
 	int				color_offset;
 	int				padding;
 }					t_context;
