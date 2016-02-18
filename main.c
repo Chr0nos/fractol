@@ -17,7 +17,6 @@
 
 int			display(t_context *c)
 {
-	draw_reset_image(c->x, 0);
 	c->f(c);
 	draw_flush_image(c->x, c->x->img);
 	return (0);
@@ -44,6 +43,7 @@ static void	init_displayer(int ac, char **av, t_context *c)
 	p = 1;
 	c->zoom = 0.0f;
 	c->zoom_step = 0.2f;
+	c->zoom_offsets = draw_make_vector(0.0f, 0.0f, 0.0f);
 	c->f = NULL;
 	c->color_offset = 0;
 	while (p < ac)

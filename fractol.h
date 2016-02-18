@@ -30,13 +30,14 @@ typedef struct	s_complex
 
 typedef struct	s_context
 {
-	t_mlx			*x;
-	void			(*f)(struct s_context *);
-	double			zoom;
-	double			zoom_step;
-	int				color_offset;
-	int				padding;
-}					t_context;
+	t_mlx		*x;
+	void		(*f)(struct s_context *);
+	double		zoom;
+	double		zoom_step;
+	t_vector	zoom_offsets;
+	int			color_offset;
+	int			padding;
+}				t_context;
 
 void			rainbow(t_context *c);
 void			mandelbrot(t_context *c);

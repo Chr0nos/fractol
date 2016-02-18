@@ -27,6 +27,10 @@ int		key_down(int keycode, void *userdata)
 		c->zoom -= c->zoom_step;
 	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
 		c->color_offset += (keycode == 24) ? 8 : -8;
+	else if ((keycode == 0) || (keycode == 2))
+		c->zoom_offsets.x += (keycode == 0) ? -0.1f : 0.1f;
+	else if ((keycode == 13) || (keycode == 1))
+		c->zoom_offsets.y += (keycode == 13) ? -0.1f : 0.1f;
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
