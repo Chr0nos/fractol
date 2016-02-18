@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 23:19:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 01:02:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	init_displayer(int ac, char **av, t_context *c)
 	p = 1;
 	c->zoom = 0.0f;
 	c->f = NULL;
+	c->color_offset = 0;
 	while (p < ac)
 	{
 		if ((!ft_strcmp(av[p], "-m")) || (!ft_strcmp(av[p], "mandelbrot")))

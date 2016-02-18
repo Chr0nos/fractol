@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 23:32:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 01:04:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
 	m->min_re = -2.0f + c->zoom;
-	m->max_re = 1.0f;
-	m->min_im = -1.2f + c->zoom;
+	m->max_re = 1.3f;
+	m->min_im = -1.0f + c->zoom;
 	m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
@@ -43,13 +43,13 @@ inline static int	mandelbrot_core(t_mandelbrot *m)
 	return (1);
 }
 
-inline static int	mandelbrot_px_color(t_mandelbrot *m, const unsigned int n)
+inline static int	mandelbrot_px_color(t_mandelbrot *m, const unsigned int n,
+	const int color_offset)
 {
 	t_rgb	rgb;
 
-	rgb.r = 0;
-	rgb.g = n * 150 / m->max_iterations;
-	rgb.b = n * 255 / m->max_iterations;
+	rgb = draw_color_hsv(180 + color_offset,
+		0.8f, (float)n / (float)m->max_iterations);
 	return (draw_color_rgb2int(&rgb));
 }
 
@@ -60,7 +60,8 @@ inline static int	mandelbrot_px_color(t_mandelbrot *m, const unsigned int n)
 ** pointer to the area and modify **colors value
 */
 
-inline static void 	*mandelbrot_init_colors(int **colors, t_mandelbrot *m)
+inline static void 	*mandelbrot_init_colors(int **colors, t_mandelbrot *m,
+	t_context *c)
 {
 	unsigned int	size;
 
@@ -68,7 +69,7 @@ inline static void 	*mandelbrot_init_colors(int **colors, t_mandelbrot *m)
 	if (!(*colors = malloc(sizeof(int) * size)))
 		return (NULL);
 	while (size--)
-		(*colors)[size] = mandelbrot_px_color(m, size);
+		(*colors)[size] = mandelbrot_px_color(m, size, c->color_offset);
 	return (*colors);
 }
 
@@ -79,7 +80,7 @@ void				mandelbrot(t_context *c)
 	int				*colors;
 
 	init_values(&m, c->x, c);
-	if (!(mandelbrot_init_colors(&colors, &m)))
+	if (!(mandelbrot_init_colors(&colors, &m, c)))
 		return ;
 	px.y = 0;
 	while (px.y < c->x->height)
