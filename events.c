@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 23:52:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 00:16:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	zoom_set(int keycode, t_context *c)
 {
-	if ((keycode == 125) && (c->zoom >= 0.0001f))
+	if (keycode == 125)
 		c->zoom *= 1.05f;
 	else if (keycode == 126)
 		c->zoom *= 0.95f;
