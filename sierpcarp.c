@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:39:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 19:20:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 19:44:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void				sierpcarp(t_context *c)
 {
 	t_point		px;
 	const int	zoom = (int)(c->zoom * 40.0f) + 1;
-	const int	start_x = 0;
-	const int	start_y = 0;
+	const int	start_x = (int)(c->zoom_offsets.x * 20.0f);
+	const int	start_y = (int)(c->zoom_offsets.y * 20.0f);
 
 	px.y = 0;
 	while (px.y < c->x->height)
