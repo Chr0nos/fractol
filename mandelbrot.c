@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 19:33:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/18 20:25:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "libft.h"
 #include <stdlib.h>
 
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
@@ -24,7 +25,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 	m->max_im = 1.2f - (zoom_factor * 0.75);
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
-	m->max_iterations = 64;
+	m->max_iterations = ft_abs((int)(c->zoom * 8.0f)) + 32;
 }
 
 /*
@@ -38,21 +39,32 @@ inline static void	mandelbrot_core(t_mandelbrot *m, const double c_re)
 	double			z_im2;
 	double			z_re;
 	double			z_im;
+	unsigned int	n;
 
 	z_re = 0.0f;
 	z_im = 0.0f;
-	m->n = 0;
-	while (m->n < m->max_iterations)
+	n = 0;
+	while (n < m->max_iterations)
 	{
 		z_re2 = z_re * z_re;
 		z_im2 = z_im * z_im;
 		if (z_re2 + z_im2 > 4)
+		{
+			m->n = n;
 			return ;
+		}
 		z_im = 2 * z_re * z_im + m->c_im;
 		z_re = z_re2 - z_im2 + c_re;
-		m->n++;
+		n++;
 	}
+	m->n = n;
 }
+
+/*
+** this function return the correct corlor for the current mandelbrot point
+** it's proceced m->max_iterations times, no more (see mandelbrot_init_colors)
+** the color generation uses HSV color
+*/
 
 inline static int	mandelbrot_px_color(t_mandelbrot *m, const unsigned int n,
 	const int color_offset)
@@ -60,7 +72,8 @@ inline static int	mandelbrot_px_color(t_mandelbrot *m, const unsigned int n,
 	t_rgb	rgb;
 
 	rgb = draw_color_hsv(180 + color_offset,
-		0.8f, (float)n / (float)m->max_iterations);
+		0.8f,
+		(float)n / (float)m->max_iterations);
 	return (draw_color_rgb2int(&rgb));
 }
 
@@ -102,11 +115,12 @@ void				mandelbrot(t_context *c)
 	px.y = 0;
 	while (px.y < c->x->height)
 	{
-		m.c_im = m.max_im - px.y * m.im_factor;
+		m.c_im = m.max_im - px.y * m.im_factor + c->zoom_offsets.y;
 		px.x = 0;
 		while (px.x < c->x->width)
 		{
-			mandelbrot_core(&m, m.min_re + px.x * m.re_factor);
+			mandelbrot_core(&m, m.min_re + px.x * m.re_factor +
+				c->zoom_offsets.x);
 			draw_px(c->x, &px, colors[m.n]);
 			px.x++;
 		}
