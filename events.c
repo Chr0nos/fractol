@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 12:20:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:25:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	zoom_set(int keycode, t_context *c)
 	return (1);
 }
 
-int		key_down(int keycode, void *userdata)
+int			key_down(int keycode, void *userdata)
 {
 	t_context	*c;
 
@@ -52,7 +52,7 @@ int		key_down(int keycode, void *userdata)
 	return (0);
 }
 
-int		mouse_click(int x, int y, int button, void *userdata)
+int			mouse_click(int x, int y, int button, void *userdata)
 {
 	(void)userdata;
 	if (button == SCROLL)
@@ -64,7 +64,7 @@ int		mouse_click(int x, int y, int button, void *userdata)
 	return (0);
 }
 
-int		mouse_move(int x, int y, void *userdata)
+int			mouse_move(int x, int y, void *userdata)
 {
 	(void)userdata;
 	(void)x;

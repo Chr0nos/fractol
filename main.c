@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 02:18:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:34:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			main(int ac, char **av)
 {
 	t_context	c;
 
+	ft_putendl("Hello, i'm fractol !");
 	fractal_loader(&c, ac, av);
 	if (!c.f)
 		ft_printf("error: no renderer set : please use: \n\t%s\n\t%s\n\t%s\n",

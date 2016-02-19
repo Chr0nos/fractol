@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 12:30:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 15:29:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);
 void				julia(t_context *c);
 void				sierpcarp(t_context *c);
+void				sierptriangle(t_context *c);
 int					mouse_click(int x, int y, int button, void *userdata);
 int					key_down(int keycode, void *userdata);
 int					mouse_move(int x, int y, void *userdata);
