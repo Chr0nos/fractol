@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 16:25:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:39:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,21 @@ int			key_down(int keycode, void *userdata)
 
 int			mouse_click(int x, int y, int button, void *userdata)
 {
-	(void)userdata;
+	t_context	*c;
+
+	c = userdata;
 	if (button == SCROLL)
 	{
 		ft_printf("scroll requested on x:%d y:%d\n", x, y);
 	}
 	else
+	{
 		ft_printf("button %d\n", button);
+		c->zoom *= 0.95f;
+		//c->zoom_offsets.x *= ((float)x / (float)(c->x->width - 1) * (float)x);
+		//c->zoom_offsets.y *= ((float)y / (float)(c->x->height - 1)) * (float)y;
+		display(c);
+	}
 	return (0);
 }
 
