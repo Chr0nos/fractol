@@ -6,14 +6,14 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/02/19 01:42:23 by snicolet         ###   ########.fr        #
+#    Updated: 2016/02/19 02:02:27 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fractol
 FLAGS=-Wall -Werror -Wextra -Weverything -Ofast
 CC=clang
-OBJ=main.o events.o mandelbrot.o rainbow.o julia.o sierpcarp.o defaults.o
+OBJ=main.o events.o mandelbrot.o rainbow.o julia.o sierpcarp.o defaults.o fractal_loader.o
 DRAW_PATH=./libs/draw/
 DRAW=$(DRAW_PATH)libdraw.a
 LIBFT_PATH=./libs/libft/
