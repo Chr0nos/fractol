@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 12:20:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 12:30:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct		s_context
 	int				padding;
 }					t_context;
 
-int				fractal_loader_key(int keycode, t_context *c);
+int					fractal_loader_key(int keycode, t_context *c);
 void				fractal_loader(t_context *c, int ac, char **av);
 void				set_defaults(t_context *c);
 void				rainbow(t_context *c);
