@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 01:42:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 12:20:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ int		key_down(int keycode, void *userdata)
 		c->zoom_offsets.x += (keycode == 0) ? -0.05f : 0.05f;
 	else if ((keycode == 13) || (keycode == 1))
 		c->zoom_offsets.y += (keycode == 13) ? -0.05f : 0.05f;
-	else if (keycode == 83)
-		c->f = &sierpcarp;
-	else if (keycode == 84)
-		c->f = &mandelbrot;
+	else if (fractal_loader_key(keycode, c))
+		;
 	else if (zoom_set(keycode, c))
 		;
 	else if (keycode == 34)

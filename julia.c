@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 22:35:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/17 22:37:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 12:22:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void				julia(t_context *c)
 {
-	(void)c;
+	draw_reset_image(c->x, 0x00004070);
 }
