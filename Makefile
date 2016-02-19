@@ -46,4 +46,7 @@ $(DRAW):
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
+linux:
+	make LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" all
+
 .PHONY: clean fclean re relibs all

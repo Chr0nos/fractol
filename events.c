@@ -14,6 +14,23 @@
 #include "libft.h"
 #include <stdlib.h>
 
+static int	linux_to_mac_key(int keycode)
+{
+	const int	l[3] = { 65307, 65362, 65364 };
+	const int	m[3] = { 53, 126, 125 };
+	int			n;
+
+	if (ft_isalpha(keycode))
+		return (keycode - 'a');
+	if (ft_isdigit(keycode))
+		return (keycode - '0' + 17);
+	n = 3;
+	while (n--)
+		if (l[n] == keycode)
+			return (m[n]);
+	return (keycode);
+}
+
 static int	zoom_set(int keycode, t_context *c)
 {
 	if (keycode == 125)
@@ -30,10 +47,11 @@ int			key_down(int keycode, void *userdata)
 	t_context	*c;
 
 	c = userdata;
+	keycode = linux_to_mac_key(keycode);
 	if ((keycode == 53) || (keycode == 12))
 		exit(0);
-	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
-		c->color_offset += (keycode == 24) ? 8 : -8;
+	else if ((keycode == 13) || ((keycode == 27) && (c->color_offset > 8)))
+		c->color_offset += (keycode == KEYUP) ? 8 : -8;
 	else if ((keycode == 0) || (keycode == 2))
 		c->zoom_offsets.x += (keycode == 0) ? -0.05f : 0.05f;
 	else if ((keycode == 13) || (keycode == 1))
