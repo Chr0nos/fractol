@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 01:08:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 01:42:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_context
 	int				padding;
 }					t_context;
 
+void				set_defaults(t_context *c);
 void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);
 void				julia(t_context *c);

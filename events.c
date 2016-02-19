@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 01:17:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 01:42:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		key_down(int keycode, void *userdata)
 		;
 	else if (keycode == 34)
 		c->iterator_offset *= 2;
+	else if (keycode == 15)
+		set_defaults(c);
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
