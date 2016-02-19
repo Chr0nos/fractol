@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/18 23:34:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 01:18:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	init_displayer(int ac, char **av, t_context *c)
 	p = 1;
 	c->zoom = 1.0;
 	c->zoom_offsets = draw_make_vector(0.0f, 0.0f, 0.0f);
+	c->iterator_offset = 1;
 	c->f = NULL;
 	c->color_offset = 0;
 	while (p < ac)

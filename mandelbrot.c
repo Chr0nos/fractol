@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 00:00:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 01:08:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 	m->max_iterations = (unsigned int)(16.0f / c->zoom) + 16;
 	if (m->max_iterations > 128)
 		m->max_iterations = 128;
+	m->max_iterations += c->iterator_offset;
 }
 
 /*
@@ -121,7 +122,8 @@ void				mandelbrot(t_context *c)
 		px.x = 0;
 		while (px.x < c->x->width)
 		{
-			mandelbrot_core(&m, m.min_re + px.x * m.re_factor + (c->zoom_offsets.x));
+			mandelbrot_core(&m, m.min_re + px.x * m.re_factor +
+				(c->zoom_offsets.x));
 			draw_px(c->x, &px, colors[m.n]);
 			px.x++;
 		}

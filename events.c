@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 00:16:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 01:17:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int		key_down(int keycode, void *userdata)
 		c->f = &mandelbrot;
 	else if (zoom_set(keycode, c))
 		;
+	else if (keycode == 34)
+		c->iterator_offset *= 2;
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
