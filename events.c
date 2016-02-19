@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 16:39:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/19 23:25:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			key_down(int keycode, void *userdata)
 	keycode = linux_to_mac_key(keycode);
 	if ((keycode == 53) || (keycode == 12))
 		exit(0);
-	else if ((keycode == 13) || ((keycode == 27) && (c->color_offset > 8)))
+	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
 		c->color_offset += (keycode == KEYUP) ? 8 : -8;
 	else if ((keycode == 0) || (keycode == 2))
 		c->zoom_offsets.x += (keycode == 0) ? -0.05f : 0.05f;
@@ -64,7 +64,7 @@ int			key_down(int keycode, void *userdata)
 		c->iterator_offset *= 2;
 	else if (keycode == 15)
 		set_defaults(c);
-	else
+	//else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
 	return (0);
