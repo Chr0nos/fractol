@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 15:53:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/22 20:52:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ inline static void	mandelbrot_core(t_mandelbrot *m, const double c_re)
 ** the color generation uses HSV color
 */
 
-inline static int	mandelbrot_px_color(t_mandelbrot *m, const unsigned int n,
-	const int color_offset)
+inline static int	mandelbrot_px_color(const unsigned int max_iterations,
+	const unsigned int n, const int color_offset)
 {
 	t_rgb	rgb;
 
 	rgb = draw_color_hsv(180 + color_offset,
 		0.8f,
-		(float)n / (float)m->max_iterations);
+		(float)n / (float)max_iterations);
 	return (draw_color_rgb2int(&rgb));
 }
 
@@ -99,7 +99,8 @@ inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
 	(*colors)[size--] = COLOR_BLACK;
 	while (size)
 	{
-		(*colors)[size] = mandelbrot_px_color(m, size, c->color_offset);
+		(*colors)[size] = mandelbrot_px_color(m->max_iterations,
+			size, c->color_offset);
 		size--;
 	}
 	(*colors)[0] = COLOR_WHITE;
