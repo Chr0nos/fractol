@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 01:46:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/23 18:39:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/23 19:32:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ inline static void	fractal_loader_init(void **fptrs)
 inline static void	fractal_loader_loadidx(const unsigned int idx, void **fptrs,
 	t_context *c)
 {
-	c->post_display = &fractol_stats;
+	c->post_display = NULL;
 	c->f = (void(*)(t_context *))fptrs[idx];
 }
 
