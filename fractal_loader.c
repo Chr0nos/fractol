@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 01:46:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/19 16:25:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/23 01:20:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,31 @@ inline static void	fractal_loader_init(void **fptrs)
 	fptrs[4] = (void*)&sierptriangle;
 }
 
+inline static void	fractal_loader_loadidx(const unsigned int idx, void **fptrs,
+	t_context *c)
+{
+	c->post_display = NULL;
+	c->f = (void(*)(t_context *))fptrs[idx];
+}
+
 int					fractal_loader_key(int keycode, t_context *c)
 {
-	void			*fptrs[5];
+	void			*fptrs[FRACTAL_COUNT];
 	int				idx;
 
 	idx = keycode - 18;
-	if ((idx < 0) || (idx > 4))
+	if ((idx < 0) || (idx >= FRACTAL_COUNT))
 		return (0);
+	c->post_display = NULL;
 	fractal_loader_init(fptrs);
-	c->f = (void(*)(t_context *))fptrs[idx];
+	fractal_loader_loadidx((unsigned int)idx, fptrs, c);
 	return (1);
 }
 
 void				fractal_loader(t_context *c, int ac, char **av)
 {
 	const char		*params = "rmjst";
-	void			*fptrs[5];
+	void			*fptrs[FRACTAL_COUNT];
 	int				ppos;
 	int				p;
 
@@ -51,7 +59,7 @@ void				fractal_loader(t_context *c, int ac, char **av)
 		{
 			ppos = ft_strchrpos(params, av[p][1]);
 			if (ppos >= 0)
-				c->f = (void(*)(t_context *))fptrs[ppos];
+				fractal_loader_loadidx((unsigned int)ppos, fptrs, c);
 			else
 				ft_printf("error: unknow option: %s\n", av[p]);
 		}
