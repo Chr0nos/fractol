@@ -6,12 +6,12 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/02/23 18:37:19 by snicolet         ###   ########.fr        #
+#*   Updated: 2016/02/27 18:59:10 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fractol
-FLAGS=-Wall -Werror -Wextra -Weverything -Ofast
+FLAGS=-Wall -Werror -Wextra -Weverything -Ofast -march=native -mtune=native -pipe -fomit-frame-pointer
 CC=clang
 OBJ=main.o events.o mandelbrot.o rainbow.o julia.o sierpcarp.o sierptriangle.o defaults.o fractal_loader.o stats.o
 MLX_PATH=./libs/minilibx_macos
