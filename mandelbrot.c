@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/27 10:18:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/28 23:23:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 ** so in the case of a 1024x768 it's called 786432 times per draw
 */
 
-inline static void	mandelbrot_core(t_mandelbrot *m, const double c_re)
+inline static unsigned int	mandelbrot_core(t_mandelbrot *m, const double c_re)
 {
 	double			z_re2;
 	double			z_im2;
@@ -46,21 +46,17 @@ inline static void	mandelbrot_core(t_mandelbrot *m, const double c_re)
 
 	z_re = 0.0f;
 	z_im = 0.0f;
-	n = 0;
-	while (n < m->max_iterations)
+	n = m->max_iterations;
+	while (n--)
 	{
 		z_re2 = z_re * z_re;
 		z_im2 = z_im * z_im;
 		if (z_re2 + z_im2 > 4)
-		{
-			m->n = n;
-			return ;
-		}
+			return (m->max_iterations - n - 1);
 		z_im = 2 * z_re * z_im + m->c_im;
 		z_re = z_re2 - z_im2 + c_re;
-		n++;
 	}
-	m->n = n;
+	return (m->max_iterations);
 }
 
 /*
@@ -123,8 +119,9 @@ void				mandelbrot(t_context *c)
 		px.x = c->x->width;
 		while (px.x--)
 		{
-			mandelbrot_core(&m, px.x * m.re_factor + m.min_re +	c->zoom_offsets.x);
-			draw_px(c->x, &px, colors[m.n]);
+			draw_px(c->x, &px,
+				colors[mandelbrot_core(&m, px.x * m.re_factor + m.min_re +
+					c->zoom_offsets.x)]);
 		}
 	}
 	free(colors);
