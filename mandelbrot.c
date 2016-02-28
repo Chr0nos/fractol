@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/28 23:23:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/28 23:34:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ inline static unsigned int	mandelbrot_core(t_mandelbrot *m, const double c_re)
 		z_re2 = z_re * z_re;
 		z_im2 = z_im * z_im;
 		if (z_re2 + z_im2 > 4)
-			return (m->max_iterations - n - 1);
+			return (n);
 		z_im = 2 * z_re * z_im + m->c_im;
 		z_re = z_re2 - z_im2 + c_re;
 	}
@@ -96,7 +96,7 @@ inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
 	while (size)
 	{
 		(*colors)[size] = mandelbrot_px_color(m->max_iterations,
-			size, c->color_offset);
+			m->max_iterations - size, c->color_offset);
 		size--;
 	}
 	(*colors)[0] = COLOR_WHITE;
