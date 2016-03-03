@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/28 23:34:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/02/29 16:52:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 /*
 ** this function is called on each pixel of the window
 ** so in the case of a 1024x768 it's called 786432 times per draw
+** it returns the number of iterations lefts
 */
 
 inline static unsigned int	mandelbrot_core(t_mandelbrot *m, const double c_re)
@@ -82,6 +83,7 @@ inline static int	mandelbrot_px_color(const unsigned int max_iterations,
 ** it malloc and return 0 in case of fail, in case of success return 1
 ** the function allocate one extra int to avoir -1 in the critical while
 ** the position 0 should never be used
+** colors are in the reverse order
 */
 
 inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,

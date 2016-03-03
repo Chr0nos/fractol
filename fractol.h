@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/23 18:39:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/02 11:40:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define FRACTOL_H
 # define FRACTAL_COUNT 5
 # include "draw.h"
+# include "fractval.h"
 # include "mandelbrot.h"
+
 
 enum				e_mousebutton
 {
@@ -28,7 +30,7 @@ typedef struct		s_context
 	t_mlx			*x;
 	void			(*f)(struct s_context *);
 	void			(*post_display)(struct s_context *);
-	double			zoom;
+	t_fracval		zoom;
 	t_vector		zoom_offsets;
 	int				color_offset;
 	unsigned int	iterator_offset;

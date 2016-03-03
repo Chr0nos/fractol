@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/26 22:51:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/02 11:38:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int			mouse_click(int x, int y, int button, void *userdata)
 	{
 		ft_printf("button %d\n", button);
 		c->zoom *= 0.95f;
+		//c->zoom_offsets.x = 2.0f - ((float)x / (float)(c->x->width) + 1.0f);
+		//c->zoom_offsets.y = (float)y / (float)(c->x->height);
 		//c->zoom_offsets.x *= ((float)x / (float)(c->x->width - 1) * (float)x);
 		//c->zoom_offsets.y *= ((float)y / (float)(c->x->height - 1)) * (float)y;
 		display(c);
