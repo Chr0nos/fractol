@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/02 11:38:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/03 14:07:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int			key_down(int keycode, void *userdata)
 	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
 		c->color_offset += (keycode == KEYUP) ? 8 : -8;
 	else if ((keycode == 0) || (keycode == 2))
-		c->zoom_offsets.x += ((keycode == 0) ? -0.05f : 0.05f) * c->zoom;
+		c->zoom_offsets.x += ((keycode == 0) ? -0.05f : 0.05f) * (c->zoom + 0.00001f);
 	else if ((keycode == 1) || (keycode == 13))
-		c->zoom_offsets.y += ((keycode == 1) ? -0.05f : 0.05f) * c->zoom;
+		c->zoom_offsets.y += ((keycode == 1) ? -0.05f : 0.05f) * (c->zoom + 0.00001f);
 	else if (fractal_loader_key(keycode, c))
 		;
 	else if (zoom_set(keycode, c))
@@ -70,32 +70,40 @@ int			key_down(int keycode, void *userdata)
 	return (0);
 }
 
-int			mouse_click(int x, int y, int button, void *userdata)
+int			mouse_click(int button, int x, int y, void *userdata)
 {
 	t_context	*c;
 
+	(void)x;
+	(void)y;
 	c = userdata;
-	if (button == SCROLL)
-	{
-		ft_printf("scroll requested on x:%d y:%d\n", x, y);
-	}
-	else
+	if ((button == SCROLL) || (button == LEFT))
 	{
 		ft_printf("button %d\n", button);
 		c->zoom *= 0.95f;
-		//c->zoom_offsets.x = 2.0f - ((float)x / (float)(c->x->width) + 1.0f);
+		//c->zoom_offsets.x = (float)x / (float)(c->x->width);
 		//c->zoom_offsets.y = (float)y / (float)(c->x->height);
 		//c->zoom_offsets.x *= ((float)x / (float)(c->x->width - 1) * (float)x);
 		//c->zoom_offsets.y *= ((float)y / (float)(c->x->height - 1)) * (float)y;
 		display(c);
+
 	}
 	return (0);
 }
 
 int			mouse_move(int x, int y, void *userdata)
 {
-	(void)userdata;
-	(void)x;
-	(void)y;
+	t_context	*c;
+
+	c = userdata;
+
+	if ((x < 0) || (y < 0) || (x >= c->x->width) || (y >= c->x->height))
+		return (0);
+/*
+	c->zoom = (float)y / (float)(c->x->height - 1) / 2;
+	if (c->zoom < 0.00001f)
+		c->zoom = 0.00001f;
+	display(c);
+*/
 	return (0);
 }

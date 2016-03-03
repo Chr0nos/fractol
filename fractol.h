@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/02 11:40:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/03 12:48:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 # include "fractval.h"
 # include "mandelbrot.h"
 
-
 enum				e_mousebutton
 {
-	LEFT = 249,
-	RIGHT = 242,
-	SCROLL = 361
+	LEFT = 1,
+	RIGHT = 2,
+	SCROLL = 6
 };
 
 typedef struct		s_context
@@ -46,7 +45,7 @@ void				julia(t_context *c);
 void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);
 void				fractol_stats(t_context *c);
-int					mouse_click(int x, int y, int button, void *userdata);
+int					mouse_click(int button, int x, int y, void *userdata);
 int					key_down(int keycode, void *userdata);
 int					mouse_move(int x, int y, void *userdata);
 int					display(t_context *c);
