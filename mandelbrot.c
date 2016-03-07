@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/03 13:18:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:34:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {

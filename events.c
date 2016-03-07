@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/03 14:07:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:32:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ int			key_down(int keycode, void *userdata)
 	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
 		c->color_offset += (keycode == KEYUP) ? 8 : -8;
 	else if ((keycode == 0) || (keycode == 2))
-		c->zoom_offsets.x += ((keycode == 0) ? -0.05f : 0.05f) * (c->zoom + 0.00001f);
+		c->zoom_offsets.x += ((keycode == 0) ? -0.05f : 0.05f) * (c->zoom + 0.000001f);
 	else if ((keycode == 1) || (keycode == 13))
-		c->zoom_offsets.y += ((keycode == 1) ? -0.05f : 0.05f) * (c->zoom + 0.00001f);
+		c->zoom_offsets.y += ((keycode == 1) ? -0.05f : 0.05f) * (c->zoom + 0.000001f);
 	else if (fractal_loader_key(keycode, c))
 		;
 	else if (zoom_set(keycode, c))
 		;
 	else if (keycode == 34)
 		c->iterator_offset *= 2;
+	else if ((keycode == 31) && (c->iterator_offset > 2))
+		c->iterator_offset /= 2;
 	else if (keycode == 15)
 		set_defaults(c);
 	//else
@@ -99,11 +101,11 @@ int			mouse_move(int x, int y, void *userdata)
 
 	if ((x < 0) || (y < 0) || (x >= c->x->width) || (y >= c->x->height))
 		return (0);
-/*
+
 	c->zoom = (float)y / (float)(c->x->height - 1) / 2;
-	if (c->zoom < 0.00001f)
-		c->zoom = 0.00001f;
+	if (c->zoom < 0.000001f)
+		c->zoom = 0.000001f;
 	display(c);
-*/
+
 	return (0);
 }
