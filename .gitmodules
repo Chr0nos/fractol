@@ -4,3 +4,6 @@
 [submodule "libs/ocl"]
 	path = libs/ocl
 	url = https://github.com/Chr0nos/ocl.git
+[submodule "libs/draw"]
+	path = libs/draw
+	url = https://github.com/Chr0nos/draw
