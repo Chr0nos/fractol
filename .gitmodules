@@ -1,0 +1,6 @@
+[submodule "libs/libft"]
+	path = libs/libft
+	url = https://github.com/Chr0nos/libft
+[submodule "libs/ocl"]
+	path = libs/ocl
+	url = https://github.com/Chr0nos/ocl.git
