@@ -6,26 +6,23 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/10 18:31:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/10 19:03:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
-	m->min_re = -2.0f * c->zoom;
-	m->max_re = 1.0f * (c->zoom * 1.25f);
-	m->min_im = -1.2f * c->zoom;
+	m->min_re = (t_fracval)-2.0f * c->zoom;
+	m->max_re = (t_fracval)1.0f * (t_fracval)(c->zoom * 1.25f);
+	m->min_im = (t_fracval)-1.2f * c->zoom;
 	m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
 	m->im_factor = (m->max_im - m->min_im) / (x->height - 1);
-	printf("re_factor: %f -- im_factor: %f -- zoom: %f\n", m->re_factor,
-		m->im_factor, c->zoom);
 	m->max_iterations = (unsigned int)(16.0f / c->zoom) + 16;
 	if (m->max_iterations > 128)
 		m->max_iterations = 128;
@@ -38,13 +35,14 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 ** it returns the number of iterations lefts
 */
 
-static unsigned int	mandelbrot_core(t_mandelbrot *m, const double c_re)
+static unsigned int	mandelbrot_core(register t_mandelbrot *m,
+	const t_fracval c_re)
 {
-	double			z_re2;
-	double			z_im2;
-	double			z_re;
-	double			z_im;
-	unsigned int	n;
+	register t_fracval		z_re2;
+	register t_fracval		z_im2;
+	t_fracval				z_re;
+	t_fracval				z_im;
+	register unsigned int	n;
 
 	z_re = 0.0f;
 	z_im = 0.0f;
@@ -131,13 +129,13 @@ void				mandelbrot(t_context *c)
 	px.y = c->x->height;
 	while (px.y--)
 	{
-		m.c_im = m.max_im - px.y * m.im_factor + c->zoom_offsets.y;
+		m.c_im = (t_fracval)(m.max_im - px.y * m.im_factor + c->zoom_offsets.y);
 		px.x = c->x->width;
 		while (px.x--)
 		{
 			draw_px(c->x, &px,
-				colors[mandelbrot_core(&m, px.x * m.re_factor + m.min_re +
-					c->zoom_offsets.x)]);
+				colors[mandelbrot_core(&m, (t_fracval)(px.x * m.re_factor + m.min_re +
+					c->zoom_offsets.x))]);
 		}
 	}
 }
