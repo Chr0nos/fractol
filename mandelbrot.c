@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/04 16:34:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/10 18:31:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 ** it returns the number of iterations lefts
 */
 
-inline static unsigned int	mandelbrot_core(t_mandelbrot *m, const double c_re)
+static unsigned int	mandelbrot_core(t_mandelbrot *m, const double c_re)
 {
 	double			z_re2;
 	double			z_im2;
@@ -80,11 +80,18 @@ inline static int	mandelbrot_px_color(const unsigned int max_iterations,
 
 /*
 ** this function pre-calcultate colors
+** if the current color tab dosent need to be re-calculated: we dont
 ** it's usefull to limit the number of colors calculation to max_iterations
 ** it malloc and return 0 in case of fail, in case of success return 1
 ** the function allocate one extra int to avoir -1 in the critical while
-** the position 0 should never be used
+** the position 0 should never be used, it store the max number of iterations
 ** colors are in the reverse order
+**
+** the way to know if the color tabs need to be done again:
+** - colors tab is not NULL
+** - colors tab size is equal to m->max_iterations
+** - colors[m->max_iterations + 1] is equal to c->color_offset
+** if thoses 3 conditions are true: then we dont redo the tab
 */
 
 inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
@@ -93,7 +100,12 @@ inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
 	unsigned int	size;
 
 	size = m->max_iterations;
-	if (!(*colors = malloc(sizeof(int) * (size + 1))))
+	if ((*colors) && ((*colors)[0] == (int)size) &&
+		((*colors)[size + 1] == c->color_offset))
+		return (1);
+	if (*colors)
+		free(*colors);
+	if (!(*colors = malloc(sizeof(int) * (size + 2))))
 		return (0);
 	(*colors)[size--] = COLOR_BLACK;
 	while (size)
@@ -102,7 +114,8 @@ inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
 			m->max_iterations - size, c->color_offset);
 		size--;
 	}
-	(*colors)[0] = COLOR_WHITE;
+	(*colors)[0] = (int)m->max_iterations;
+	(*colors)[m->max_iterations + 1] = c->color_offset;
 	return (1);
 }
 
@@ -110,7 +123,7 @@ void				mandelbrot(t_context *c)
 {
 	t_mandelbrot	m;
 	t_point			px;
-	int				*colors;
+	static int		*colors;
 
 	init_values(&m, c->x, c);
 	if (!(mandelbrot_init_colors(&colors, &m, c)))
@@ -127,5 +140,4 @@ void				mandelbrot(t_context *c)
 					c->zoom_offsets.x)]);
 		}
 	}
-	free(colors);
 }
