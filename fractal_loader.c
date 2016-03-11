@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 01:46:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/02/23 19:32:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:45:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int					fractal_loader_key(int keycode, t_context *c)
 	void			*fptrs[FRACTAL_COUNT];
 	int				idx;
 
-	idx = keycode - 18;
+	idx = keycode - 18 - KEY_A;
 	if ((idx < 0) || (idx >= FRACTAL_COUNT))
 		return (0);
 	fractal_loader_init(fptrs);

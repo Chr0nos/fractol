@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 15:37:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:18:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			key_down(int keycode, void *userdata)
 
 	c = userdata;
 	if ((keycode == KEY_ESC) || (keycode == KEY_Q))
-		exit(0);
+		closer(c);
 	else if ((keycode == KEY_PLUS) || ((keycode == KEY_LESS) &&
 		(c->color_offset >= 8)))
 			c->color_offset += (keycode == KEY_PLUS) ? 8 : -8;
@@ -65,13 +65,7 @@ int			mouse_click(int button, int x, int y, void *userdata)
 	c = userdata;
 	ft_printf("mouseclick: %d\n", button);
 	if (button == SCROLLUP)
-	{
 		c->zoom *= 0.9f;
-		//c->zoom_offsets.x = (float)x / (float)(c->x->width);
-		//c->zoom_offsets.y = (float)y / (float)(c->x->height);
-		//c->zoom_offsets.x *= ((float)x / (float)(c->x->width - 1) * (float)x);
-		//c->zoom_offsets.y *= ((float)y / (float)(c->x->height - 1)) * (float)y;
-	}
 	else if (button == SCROLLDOWN)
 	{
 		c->zoom *= 1.1;

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 18:25:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 14:50:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:15:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void						fractol_stats(t_context *c)
 	ft_ftobuff(xoffset, (double)c->zoom_offsets.x, 10, "0123456789");
 	ft_ftobuff(yoffset, (double)c->zoom_offsets.y, 10, "0123456789");
 	ft_ftobuff(zoomstr, (double)c->zoom, 10, "0123456789");
-
 	p = strxcat(buffer, "offsets: x: ");
 	p += strxcat(buffer + p, xoffset);
 	p += strxcat(buffer + p, " y: ");

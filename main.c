@@ -6,14 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 15:03:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:25:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "draw.h"
 #include "fractol.h"
-#include <stdlib.h>
 
 static void	reddot(t_context *c)
 {
@@ -33,17 +32,6 @@ int			display(t_context *c)
 	if (c->post_display != NULL)
 		c->post_display(c);
 	return (0);
-}
-
-static int	closer(void *userdata)
-{
-	t_context	*c;
-
-	c = userdata;
-	draw_clear((t_mlx *)userdata);
-	if (c->colormap)
-		free(c->colormap);
-	exit(0);
 }
 
 static void	set_hooks(t_context *c)

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 15:29:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:22:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_context
 	int				keys_press;
 }					t_context;
 
+int					closer(void *userdata);
 int					colors_init(int **colors, unsigned int size, t_context *c);
 int					fractal_loader_key(int keycode, t_context *c);
 void				fractal_loader(t_context *c, int ac, char **av);
