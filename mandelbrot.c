@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 16:14:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:44:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
 	m->min_re = (t_fracval)-2.0f * c->zoom;
-	m->max_re = (t_fracval)1.0f * (t_fracval)(c->zoom * 1.33f);
+	m->max_re = (t_fracval)1.0f * (t_fracval)(c->zoom * 1.0f);
 	m->min_im = (t_fracval)-1.2f * c->zoom;
 	m->max_im = m->min_im + (m->max_re - m->min_re) * x->height / x->width;
 	m->re_factor = (m->max_re - m->min_re) / (x->width - 1);
@@ -28,7 +28,7 @@ inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 /*
 ** this function is called on each pixel of the window
 ** so in the case of a 1024x768 it's called 786432 times per draw
-** it returns the number of iterations lefts
+** it returns the number of iterations done
 */
 
 static unsigned int	mandelbrot_core(t_mandelbrot *m, const t_fracval c_re)
