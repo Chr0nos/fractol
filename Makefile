@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/11 16:18:01 by snicolet         ###   ########.fr        #
+#    Updated: 2016/03/11 16:33:49 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME): $(OBJ) $(DRAW) $(LIBFT)
 	$(CC) $(OBJ) -o $(NAME) $(LINKER) $(FLAGS)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -I $(DRAW_PATH) -I $(LIBFT_PATH) -I $(MLX_PATH)
+	$(CC) $(FLAGS) -c $< -I $(DRAW_PATH) -I $(LIBFT_PATH) -I $(MLX_PATH) -I ./headers/
 
 clean:
 	$(RM) $(OBJ)
