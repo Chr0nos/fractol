@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 01:46:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 15:45:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 20:22:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ inline static void	fractal_loader_init(void **fptrs)
 	fptrs[2] = (void*)&julia;
 	fptrs[3] = (void*)&sierpcarp;
 	fptrs[4] = (void*)&sierptriangle;
+	fptrs[5] = (void*)&mandelbrot2;
 }
 
 inline static void	fractal_loader_loadidx(const unsigned int idx, void **fptrs,
@@ -33,8 +34,12 @@ int					fractal_loader_key(int keycode, t_context *c)
 {
 	void			*fptrs[FRACTAL_COUNT];
 	int				idx;
+	const int		tab[] = { KEY_PAD0, KEY_PAD1, KEY_PAD2, KEY_PAD3, KEY_PAD4,
+		KEY_PAD5, KEY_PAD6, KEY_PAD7, KEY_PAD8, KEY_PAD9 };
 
-	idx = keycode - 18 - KEY_A;
+	idx = 10;
+	while ((idx--) && (tab[idx] != keycode))
+		;
 	if ((idx < 0) || (idx >= FRACTAL_COUNT))
 		return (0);
 	fractal_loader_init(fptrs);
@@ -44,7 +49,7 @@ int					fractal_loader_key(int keycode, t_context *c)
 
 void				fractal_loader(t_context *c, int ac, char **av)
 {
-	const char		*params = "rmjst";
+	const char		*params = "rmjstb";
 	void			*fptrs[FRACTAL_COUNT];
 	int				ppos;
 	int				p;

@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 16:33:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 18:25:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define FRACTAL_COUNT 5
+# define FRACTAL_COUNT 6
 # include "draw.h"
 # include "fractval.h"
 # include "mandelbrot.h"
@@ -50,6 +50,7 @@ void				fractal_loader(t_context *c, int ac, char **av);
 void				set_defaults(t_context *c);
 void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);
+void				mandelbrot2(t_context *c);
 void				julia(t_context *c);
 void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:25:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 15:42:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 20:25:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,15 @@
 # define KEY_Q 12
 # define KEY_R 15
 # define KEY_O 31
+# define KEY_PAD1 18
+# define KEY_PAD2 19
+# define KEY_PAD3 20
+# define KEY_PAD4 21
+# define KEY_PAD5 23
+# define KEY_PAD6 22
+# define KEY_PAD7 26
+# define KEY_PAD8 28
+# define KEY_PAD9 25
+# define KEY_PAD0 29
 
 #endif
