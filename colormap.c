@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:28:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 11:34:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:16:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include <stdlib.h>
 
 /*
-** this function return the correct corlor for the current mandelbrot point
-** it's proceced m->max_iterations times, no more (see mandelbrot_init_colors)
+** this function return the correct corlor for the current point
 ** the color generation uses HSV color
 */
 
