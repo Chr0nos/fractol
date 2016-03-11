@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 11:38:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:29:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@
 # include "draw.h"
 # include "fractval.h"
 # include "mandelbrot.h"
+# ifdef __APPLE__
+#  include "keycodes_mac.h"
+# else
+#  include "keycodes_linux.h"
+# endif
 
 enum				e_mousebutton
 {
 	LEFT = 1,
 	RIGHT = 2,
-	SCROLL = 6
+	SCROLLUP = 4,
+	SCROLLDOWN = 5
 };
 
 typedef struct		s_context
@@ -34,7 +40,7 @@ typedef struct		s_context
 	t_vector		zoom_offsets;
 	int				color_offset;
 	unsigned int	iterator_offset;
-	int				padding;
+	int				keys_press;
 }					t_context;
 
 int					colors_init(int **colors, unsigned int size, t_context *c);

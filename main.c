@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 11:44:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 15:03:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,19 @@
 #include "fractol.h"
 #include <stdlib.h>
 
+static void	reddot(t_context *c)
+{
+	t_point		p;
+
+	p.x = c->x->width / 2;
+	p.y = c->x->height / 2;
+	draw_px(c->x, &p, COLOR_RED);
+}
+
 int			display(t_context *c)
 {
 	c->f(c);
+	reddot(c);
 	draw_flush_image(c->x, c->x->img);
 	fractol_stats(c);
 	if (c->post_display != NULL)
