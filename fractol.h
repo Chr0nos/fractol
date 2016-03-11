@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 11:34:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 11:38:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_context
 	t_mlx			*x;
 	void			(*f)(struct s_context *);
 	void			(*post_display)(struct s_context *);
+	int				*colormap;
 	t_fracval		zoom;
 	t_vector		zoom_offsets;
 	int				color_offset;

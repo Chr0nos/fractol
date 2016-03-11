@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/10 18:54:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 11:44:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ int			display(t_context *c)
 
 static int	closer(void *userdata)
 {
+	t_context	*c;
+
+	c = userdata;
 	draw_clear((t_mlx *)userdata);
+	if (c->colormap)
+		free(c->colormap);
 	exit(0);
 }
 
@@ -54,6 +59,7 @@ int			main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 	else
 	{
+		c.colormap = NULL;
 		set_defaults(&c);
 		ft_putendl("ready to work");
 		draw_reset_image(c.x, 0);
