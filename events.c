@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/10 18:59:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 11:19:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static int	zoom_set(int keycode, t_context *c)
 		c->zoom *= 1.05f;
 	else if (keycode == 126)
 		c->zoom *= 0.95f;
+	else if ((keycode == 0) || (keycode == 2))
+		c->zoom_offsets.x += ((keycode == 0) ? -0.05f : 0.05f) *
+			(c->zoom + (t_fracval)0.000001f);
+	else if ((keycode == 1) || (keycode == 13))
+		c->zoom_offsets.y += ((keycode == 1) ? -0.05f : 0.05f) *
+			(c->zoom + (t_fracval)0.000001f);
 	else
 		return (0);
 	return (1);
@@ -50,12 +56,8 @@ int			key_down(int keycode, void *userdata)
 	keycode = linux_to_mac_key(keycode);
 	if ((keycode == 53) || (keycode == 12))
 		exit(0);
-	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset > 8)))
-		c->color_offset += (keycode == KEYUP) ? 8 : -8;
-	else if ((keycode == 0) || (keycode == 2))
-		c->zoom_offsets.x += ((keycode == 0) ? -0.05f : 0.05f) * (c->zoom + (t_fracval)0.000001f);
-	else if ((keycode == 1) || (keycode == 13))
-		c->zoom_offsets.y += ((keycode == 1) ? -0.05f : 0.05f) * (c->zoom + (t_fracval)0.000001f);
+	else if ((keycode == 24) || ((keycode == 27) && (c->color_offset >= 8)))
+		c->color_offset += (keycode == 24) ? 8 : -8;
 	else if (fractal_loader_key(keycode, c))
 		;
 	else if (zoom_set(keycode, c))
@@ -66,8 +68,7 @@ int			key_down(int keycode, void *userdata)
 		c->iterator_offset /= 2;
 	else if (keycode == 15)
 		set_defaults(c);
-	//else
-		ft_printf("keydown: %d\n", keycode);
+	ft_printf("keydown: %d\n", keycode);
 	display(c);
 	return (0);
 }

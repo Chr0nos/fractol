@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/10 19:03:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 11:31:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ inline static int	mandelbrot_px_color(const unsigned int max_iterations,
 	t_rgb	rgb;
 
 	rgb = draw_color_hsv(180 + color_offset,
-		0.8f,
+		1.0f,
 		(float)n / (float)max_iterations);
 	return (draw_color_rgb2int(&rgb));
 }
@@ -87,17 +87,16 @@ inline static int	mandelbrot_px_color(const unsigned int max_iterations,
 **
 ** the way to know if the color tabs need to be done again:
 ** - colors tab is not NULL
-** - colors tab size is equal to m->max_iterations
-** - colors[m->max_iterations + 1] is equal to c->color_offset
+** - colors tab size is equal to size
+** - colors[size + 1] is equal to c->color_offset
 ** if thoses 3 conditions are true: then we dont redo the tab
 */
 
-inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
+inline static int	mandelbrot_init_colors(int **colors, unsigned int size,
 	t_context *c)
 {
-	unsigned int	size;
+	const unsigned int	fsize = size;
 
-	size = m->max_iterations;
 	if ((*colors) && ((*colors)[0] == (int)size) &&
 		((*colors)[size + 1] == c->color_offset))
 		return (1);
@@ -108,12 +107,12 @@ inline static int	mandelbrot_init_colors(int **colors, t_mandelbrot *m,
 	(*colors)[size--] = COLOR_BLACK;
 	while (size)
 	{
-		(*colors)[size] = mandelbrot_px_color(m->max_iterations,
-			m->max_iterations - size, c->color_offset);
+		(*colors)[size] = mandelbrot_px_color(fsize,
+			fsize - size, c->color_offset);
 		size--;
 	}
-	(*colors)[0] = (int)m->max_iterations;
-	(*colors)[m->max_iterations + 1] = c->color_offset;
+	(*colors)[0] = (int)fsize;
+	(*colors)[fsize + 1] = c->color_offset;
 	return (1);
 }
 
@@ -124,7 +123,7 @@ void				mandelbrot(t_context *c)
 	static int		*colors;
 
 	init_values(&m, c->x, c);
-	if (!(mandelbrot_init_colors(&colors, &m, c)))
+	if (!(mandelbrot_init_colors(&colors, m.max_iterations, c)))
 		return ;
 	px.y = c->x->height;
 	while (px.y--)
@@ -134,8 +133,8 @@ void				mandelbrot(t_context *c)
 		while (px.x--)
 		{
 			draw_px(c->x, &px,
-				colors[mandelbrot_core(&m, (t_fracval)(px.x * m.re_factor + m.min_re +
-					c->zoom_offsets.x))]);
+				colors[mandelbrot_core(&m, (t_fracval)(px.x * m.re_factor +
+						m.min_re + c->zoom_offsets.x))]);
 		}
 	}
 }

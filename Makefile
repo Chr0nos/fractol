@@ -6,14 +6,16 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#*   Updated: 2016/02/27 18:59:10 by snicolet         ###   ########.fr       *#
+#    Updated: 2016/03/11 11:34:54 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fractol
 FLAGS=-Wall -Werror -Wextra -Weverything -Ofast -march=native -mtune=native -pipe -fomit-frame-pointer
 CC=clang
-OBJ=main.o events.o mandelbrot.o rainbow.o julia.o sierpcarp.o sierptriangle.o defaults.o fractal_loader.o stats.o
+OBJ=main.o events.o mandelbrot.o rainbow.o \
+	julia.o sierpcarp.o sierptriangle.o defaults.o \
+	fractal_loader.o stats.o colormap.o
 MLX_PATH=./libs/minilibx_macos
 DRAW_PATH=./libs/draw/
 DRAW=$(DRAW_PATH)libdraw.a
