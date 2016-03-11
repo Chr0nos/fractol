@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:28:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 12:16:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:29:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ inline static int	color_px(const unsigned int max_iterations,
 ** the function allocate one extra int to avoir -1 in the critical while
 ** the position 0 should never be used, it store the max number of iterations
 ** colors are in the reverse order
-**
+** ---
 ** the way to know if the color tabs need to be done again:
 ** - colors tab is not NULL
 ** - colors tab size is equal to size
