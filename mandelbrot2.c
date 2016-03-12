@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 20:10:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/12 21:47:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,12 @@ void				mandelbrot2(t_context *c)
 	init_values(&m, c);
 	if (!(colors_init(&c->colormap, m.max_iterations, c)))
 		return ;
-	draw_reset_image(c->x, 0);
+	//draw_reset_image(c->x, 0);
 	colors = c->colormap;
-	image_x = (int)((m.x2 - m.x1) * zoom);
-	image_y = (int)((m.y2 - m.y1) * zoom);
+	//image_x = (int)((m.x2 - m.x1) * zoom);
+	//image_y = (int)((m.y2 - m.y1) * zoom);
+	image_x = c->x->width;
+	image_y = c->x->height;
 	px.x = 0;
 	while (px.x < image_x)
 	{
