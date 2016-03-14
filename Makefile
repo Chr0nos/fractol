@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/11 18:19:53 by snicolet         ###   ########.fr        #
+#*   Updated: 2016/03/13 12:46:40 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ fclean: clean
 re: fclean all
 
 relibs: re
-	make -C $(LIBFT_PATH) re
-	make -C $(DRAW_PATH) re
+	make -C $(LIBFT_PATH) FLAGS="$(FLAGS)" re
+	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" re
 
 $(DRAW):
 	make -C $(DRAW_PATH)
@@ -52,4 +52,4 @@ $(LIBFT):
 linux:
 	make LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" all
 
-.PHONY: clean fclean re relibs all
+.PHONY: clean fclean re relibs all linux
