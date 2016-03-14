@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 16:18:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/14 15:41:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int			key_down(int keycode, void *userdata)
 		c->iterator_offset /= 2;
 	else if (keycode == KEY_R)
 		set_defaults(c);
-	ft_printf("keydown: %d\n", keycode);
+	else
+		ft_printf("keydown: %d\n", keycode);
 	display(c);
 	return (0);
 }
@@ -63,7 +64,6 @@ int			mouse_click(int button, int x, int y, void *userdata)
 	(void)x;
 	(void)y;
 	c = userdata;
-	ft_printf("mouseclick: %d\n", button);
 	if (button == SCROLLUP)
 		c->zoom *= 0.9f;
 	else if (button == SCROLLDOWN)
@@ -71,7 +71,10 @@ int			mouse_click(int button, int x, int y, void *userdata)
 		c->zoom *= 1.1;
 	}
 	else
+	{
+		ft_printf("mouseclick: %d\n", button);
 		return (0);
+	}
 	display(c);
 	return (0);
 }
