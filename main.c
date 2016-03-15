@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 18:31:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 20:11:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	reddot(t_context *c)
 int			display(t_context *c)
 {
 	c->f(c);
-	reddot(c);
+	if (c->flags & FLAG_AIM)
+		reddot(c);
 	draw_flush_image(c->x, c->x->img);
 	fractol_stats(c);
 	if (c->post_display != NULL)
@@ -60,6 +61,7 @@ int			main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 	else
 	{
+		c.flags = FLAG_NONE;
 		c.colormap = NULL;
 		set_defaults(&c);
 		ft_putendl("ready to work");

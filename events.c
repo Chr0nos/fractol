@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 19:04:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 20:09:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ int			key_down(int keycode, void *userdata)
 		c->iterator_offset /= 2;
 	else if (keycode == KEY_R)
 		set_defaults(c);
+	else if (keycode == KEY_T)
+		c->flags |= FLAG_AIM;
+	else if (keycode == KEY_G)
+		c->flags = c->flags & ~FLAG_AIM;
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
@@ -61,23 +65,15 @@ int			mouse_click(int button, int x, int y, void *userdata)
 {
 	t_context	*c;
 
-	(void)x;
-	(void)y;
 	c = userdata;
-	// c->mouse.x = x;
-	// c->mouse.y = y;
 	if (button == SCROLLUP)
 	{
 		c->zoom *= 0.9f;
-		// c->center.x += c->zoom_offsets.x;
-		// c->center.y += c->zoom_offsets.y;
 		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
 		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
 	}
 	else if (button == SCROLLDOWN)
-	{
 		c->zoom *= 1.1;
-	}
 	else if (button == CLICKLEFT)
 	{
 		ft_printf("mouseclick: %d x:%d y:%d\n", button, x, y);

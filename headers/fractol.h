@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 18:50:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 20:10:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # else
 #  include "keycodes_linux.h"
 # endif
+# define FLAG_NONE 0
+# define FLAG_AIM 1u
 
 enum				e_mousebutton
 {
@@ -43,6 +45,7 @@ typedef struct		s_context
 	int				keys_press;
 	t_vector		mouse;
 	t_vector		center;
+	size_t			flags;
 }					t_context;
 
 int					closer(void *userdata);
