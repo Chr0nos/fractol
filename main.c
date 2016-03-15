@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 16:25:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 18:31:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 static void	reddot(t_context *c)
 {
 	t_point		p;
+	t_circle	ci;
 
 	p.x = c->x->width / 2;
 	p.y = c->x->height / 2;
 	draw_px(c->x, &p, COLOR_RED);
+	ci = draw_make_circle(p.x, p.y, 12);
+	draw_circle(c->x, &ci, COLOR_RED);
 }
 
 int			display(t_context *c)

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 18:25:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 18:50:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 enum				e_mousebutton
 {
-	LEFT = 1,
-	RIGHT = 2,
+	CLICKLEFT = 1,
+	CLICKRIGHT = 2,
 	SCROLLUP = 4,
 	SCROLLDOWN = 5
 };
@@ -41,6 +41,8 @@ typedef struct		s_context
 	int				color_offset;
 	unsigned int	iterator_offset;
 	int				keys_press;
+	t_vector		mouse;
+	t_vector		center;
 }					t_context;
 
 int					closer(void *userdata);

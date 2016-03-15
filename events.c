@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/14 15:41:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 19:04:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static int	zoom_set(int keycode, t_context *c)
 	else if (keycode == KEY_DOWN)
 		c->zoom *= 0.95f;
 	else if ((keycode == KEY_A) || (keycode == KEY_D))
-		c->zoom_offsets.x += ((keycode == KEY_A) ? -0.05f : 0.05f) *
-			(c->zoom + (t_fracval)0.000001f);
+		c->zoom_offsets.x += ((keycode == KEY_A) ? -0.15f : 0.15f) *
+			(c->zoom + (t_fracval)0.0000001f);
 	else if ((keycode == KEY_W) || (keycode == KEY_S))
-		c->zoom_offsets.y += ((keycode == KEY_W) ? -0.05f : 0.05f) *
+		c->zoom_offsets.y += ((keycode == KEY_W) ? -0.15f : 0.15f) *
 			(c->zoom + (t_fracval)0.000001f);
 	else
 		return (0);
@@ -64,15 +64,29 @@ int			mouse_click(int button, int x, int y, void *userdata)
 	(void)x;
 	(void)y;
 	c = userdata;
+	// c->mouse.x = x;
+	// c->mouse.y = y;
 	if (button == SCROLLUP)
+	{
 		c->zoom *= 0.9f;
+		// c->center.x += c->zoom_offsets.x;
+		// c->center.y += c->zoom_offsets.y;
+		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
+		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
+	}
 	else if (button == SCROLLDOWN)
 	{
 		c->zoom *= 1.1;
 	}
+	else if (button == CLICKLEFT)
+	{
+		ft_printf("mouseclick: %d x:%d y:%d\n", button, x, y);
+		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
+		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
+	}
 	else
 	{
-		ft_printf("mouseclick: %d\n", button);
+		ft_printf("mouseclick: %d x:%d y:%d\n", button, x, y);
 		return (0);
 	}
 	display(c);
@@ -87,7 +101,7 @@ int			mouse_move(int x, int y, void *userdata)
 
 	if ((x < 0) || (y < 0) || (x >= c->x->width) || (y >= c->x->height))
 		return (0);
-
+	//display(c);
 /*
 	c->zoom = (t_fracval)y / (t_fracval)(c->x->height - 1) / 2;
 	if (c->zoom < (t_fracval)0.000001f)

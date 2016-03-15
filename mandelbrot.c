@@ -6,15 +6,17 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/13 11:47:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 12:27:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 inline static void	init_values(t_mandelbrot *m, t_mlx *x, t_context *c)
 {
+	printf("zoom : %f\n", c->zoom);
 	m->min_re = (t_fracval)-2.0f * c->zoom;
 	m->max_re = (t_fracval)1.0f * (t_fracval)(c->zoom * 1.285f);
 	m->min_im = (t_fracval)-1.2f * c->zoom;
