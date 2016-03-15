@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 19:01:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 19:11:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include <stdlib.h>
 
-#include <stdio.h>
 inline static void	init_values(t_mandelbrot *m, t_context *c)
 {
 	const t_fracval	zox = c->zoom_offsets.x;
@@ -26,9 +25,8 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	m->center_y = (t_fracval)(c->center.y) * m->zoom;
 	m->x1 = (t_fracval)-2.1f * m->zoom;
 	m->y1 = (t_fracval)-1.2f * m->zoom;
-	m->x1 -= m->center_x - zox; //+ ((t_fracval)(c->mouse.x) * m->zoom);
-	m->y1 -= m->center_y + zoy; //+ ((t_fracval)(c->mouse.y) * m->zoom);
-	printf("%f %f\n", m->x1, m->y1);
+	m->x1 -= m->center_x - zox;
+	m->y1 -= m->center_y + zoy;
 }
 
 static unsigned int	mandelbrot_core2(t_mandelbrot *m)
