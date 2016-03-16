@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/16 13:40:11 by snicolet         ###   ########.fr        #
+#*   Updated: 2016/03/16 14:24:08 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,12 @@ relibs: re
 	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" re
 
 $(DRAW):
-	make -C $(DRAW_PATH)
+	make -C $(DRAW_PATH) MLX=../../$(MLX_PATH)
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-linux: $(OBJ) $(DRAW) $(LIBFT)
-	make LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" all
+linux:
+	make -w LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" MLX_PATH="./libs/minilibx" all
 
 .PHONY: clean fclean re relibs all linux
