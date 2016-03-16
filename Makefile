@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#*   Updated: 2016/03/16 14:24:08 by snicolet         ###   ########.fr       *#
+#    Updated: 2016/03/16 15:49:07 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ FLAGS=-Wall -Werror -Wextra -Weverything -Ofast -march=native -mtune=native -pip
 CC=clang
 OBJ=main.o events.o mandelbrot.o mandelbrot2.o rainbow.o \
 	julia.o sierpcarp.o sierptriangle.o defaults.o \
-	fractal_loader.o stats.o colormap.o closer.o events_mouse.o
+	fractal_loader.o stats.o colormap.o closer.o events_mouse.o \
+	display.o
 MLX_PATH=./libs/minilibx_macos
 DRAW_PATH=./libs/draw/
 DRAW=$(DRAW_PATH)libdraw.a
