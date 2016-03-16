@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 20:10:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:27:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # endif
 # define FLAG_NONE 0
 # define FLAG_AIM 1u
+# define FLAG_HALFMOUSE 1u << 1
 
 enum				e_mousebutton
 {
@@ -60,9 +61,9 @@ void				julia(t_context *c);
 void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);
 void				fractol_stats(t_context *c);
-int					mouse_click(int button, int x, int y, void *userdata);
-int					key_down(int keycode, void *userdata);
-int					mouse_move(int x, int y, void *userdata);
+int					mouse_click(int button, int x, int y, t_context *c);
+int					key_down(int keycode, t_context *c);
+int					mouse_move(int x, int y, t_context *c);
 int					display(t_context *c);
 int					main(int ac, char **av);
 

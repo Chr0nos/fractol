@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 13:15:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:29:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,24 @@ static int	zoom_set(int keycode, t_context *c)
 	return (1);
 }
 
-int			key_down(int keycode, void *userdata)
+static void	trigger_reddot(t_context *c)
 {
-	t_context	*c;
+	if (!(c->flags & FLAG_AIM))
+		c->flags |= FLAG_AIM;
+	else
+		c->flags = c->flags & ~FLAG_AIM;
+}
 
-	c = userdata;
+static void	trigger_halfmouse(t_context *c)
+{
+	if (!(c->flags & FLAG_HALFMOUSE))
+		c->flags |= FLAG_HALFMOUSE;
+	else
+		c->flags = c->flags & ~FLAG_HALFMOUSE;
+}
+
+int			key_down(int keycode, t_context *c)
+{
 	if ((keycode == KEY_ESC) || (keycode == KEY_Q))
 		closer(c);
 	else if ((keycode == KEY_PLUS) || ((keycode == KEY_LESS) &&
@@ -52,60 +65,11 @@ int			key_down(int keycode, void *userdata)
 	else if (keycode == KEY_R)
 		set_defaults(c);
 	else if (keycode == KEY_T)
-	{
-		if (!(c->flags & FLAG_AIM))
-			c->flags |= FLAG_AIM;
-		else
-			c->flags = c->flags & ~FLAG_AIM;
-	}
+		trigger_reddot(c);
+	else if (keycode == KEY_G)
+		trigger_halfmouse(c);
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
-	return (0);
-}
-
-int			mouse_click(int button, int x, int y, void *userdata)
-{
-	t_context	*c;
-
-	c = userdata;
-	if (button == SCROLLUP)
-	{
-		c->zoom *= 0.9f;
-		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
-		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
-	}
-	else if (button == SCROLLDOWN)
-		c->zoom *= 1.1;
-	else if (button == CLICKLEFT)
-	{
-		ft_printf("mouseclick: %d x:%d y:%d\n", button, x, y);
-		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
-		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
-	}
-	else
-	{
-		ft_printf("mouseclick: %d x:%d y:%d\n", button, x, y);
-		return (0);
-	}
-	display(c);
-	return (0);
-}
-
-int			mouse_move(int x, int y, void *userdata)
-{
-	t_context	*c;
-
-	c = userdata;
-
-	if ((x < 0) || (y < 0) || (x >= c->x->width) || (y >= c->x->height))
-		return (0);
-	//display(c);
-/*
-	c->zoom = (t_fracval)y / (t_fracval)(c->x->height - 1) / 2;
-	if (c->zoom < (t_fracval)0.000001f)
-		c->zoom = (t_fracval)0.000001f;
-	display(c);
-*/
 	return (0);
 }
