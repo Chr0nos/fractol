@@ -44,12 +44,12 @@ relibs: re
 	make -C $(DRAW_PATH) FLAGS="$(FLAGS)" re
 
 $(DRAW):
-	make -C $(DRAW_PATH)
+	make -C $(DRAW_PATH) MLX=../../$(MLX_PATH)
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
 linux:
-	make LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" all
+	make -w LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" MLX_PATH="./libs/minilibx" all
 
 .PHONY: clean fclean re relibs all linux
