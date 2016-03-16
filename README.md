@@ -5,6 +5,6 @@ pour mac os:
 make
 
 pour linux:
-make MLX_PATH=./libs/minilibx linux
+make linux
 
-./fractol -m
+./fractol -b
