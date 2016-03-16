@@ -6,12 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 16:05:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:07:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# define SIZE_X 1024
+# define SIZE_Y 768
 # define FRACTAL_COUNT 6
 # include "draw.h"
 # include "fractval.h"
@@ -22,9 +24,6 @@
 #  include "keycodes_linux.h"
 # endif
 # include "flags.h"
-# define SIZE_X 1024
-# define SIZE_Y 768
-
 
 enum				e_mousebutton
 {
