@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 01:46:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/11 20:29:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 19:31:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ inline static void	fractal_loader_init(void **fptrs)
 	fptrs[3] = (void*)&julia;
 	fptrs[4] = (void*)&sierpcarp;
 	fptrs[5] = (void*)&sierptriangle;
+	fptrs[6] = (void*)&burningship;
 }
 
 inline static void	fractal_loader_loadidx(const unsigned int idx, void **fptrs,
@@ -49,7 +50,7 @@ int					fractal_loader_key(int keycode, t_context *c)
 
 void				fractal_loader(t_context *c, int ac, char **av)
 {
-	const char		*params = "rmbjst";
+	const char		*params = "rmbjsth";
 	void			*fptrs[FRACTAL_COUNT];
 	int				ppos;
 	int				p;
