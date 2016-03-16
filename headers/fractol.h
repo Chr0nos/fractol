@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 19:30:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 22:01:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 # define SIZE_X 1024
 # define SIZE_Y 768
-# define FRACTAL_COUNT 7
+# define FRACTAL_COUNT 6
 # include "draw.h"
 # include "fractval.h"
 # include "mandelbrot.h"
