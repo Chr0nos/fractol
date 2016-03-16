@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/16 13:25:28 by snicolet         ###   ########.fr        #
+#    Updated: 2016/03/16 13:40:11 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ $(DRAW):
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-linux:
+linux: $(OBJ) $(DRAW) $(LIBFT)
 	make LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" all
 
 .PHONY: clean fclean re relibs all linux
