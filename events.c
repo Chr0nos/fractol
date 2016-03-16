@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 20:09:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:15:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ int			key_down(int keycode, void *userdata)
 	else if (keycode == KEY_R)
 		set_defaults(c);
 	else if (keycode == KEY_T)
-		c->flags |= FLAG_AIM;
-	else if (keycode == KEY_G)
-		c->flags = c->flags & ~FLAG_AIM;
+	{
+		if (!(c->flags & FLAG_AIM))
+			c->flags |= FLAG_AIM;
+		else
+			c->flags = c->flags & ~FLAG_AIM;
+	}
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:28:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 12:27:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 01:08:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void				mandelbrot(t_context *c)
 		while (px.x--)
 			draw_px(c->x, &px,
 				colors[mandelbrot_core(&m, (t_fracval)(px.x * m.re_factor +
-					m.min_re + c->zoom_offsets.x))]);	}
+					m.min_re + c->zoom_offsets.x))]);
+	}
 }
