@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 01:46:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 21:59:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 22:03:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 inline static void	fractal_loader_init(void **fptrs)
 {
 	fptrs[0] = (void*)&rainbow;
-	fptrs[1] = (void*)&mandelbrot2;
+	fptrs[1] = (void*)&mandelbrot;
 	fptrs[2] = (void*)&julia;
 	fptrs[3] = (void*)&sierpcarp;
 	fptrs[4] = (void*)&sierptriangle;

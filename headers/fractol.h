@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 22:01:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 22:03:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void				fractal_loader(t_context *c, int ac, char **av);
 void				set_defaults(t_context *c);
 void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);
-void				mandelbrot2(t_context *c);
 void				julia(t_context *c);
 void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);
