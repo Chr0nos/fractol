@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 15:48:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:04:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			main(int ac, char **av)
 			"-m for mandelbrot",
 			"-j for julia",
 			"-r for rainbow");
-	else if (!(c.x = draw_init("Fractol", 1024, 768)))
+	else if (!(c.x = draw_init("Fractol", SIZE_X, SIZE_Y)))
 		ft_putendl("error: failed to init window");
 	else
 	{
