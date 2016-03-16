@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:25:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 20:07:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:21:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define KEY_W 1
 # define KEY_S 13
 # define KEY_I 34
+# define KEY_L 37
 # define KEY_Q 12
 # define KEY_R 15
 # define KEY_O 31

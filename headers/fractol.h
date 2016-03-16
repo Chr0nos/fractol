@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 13:27:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:22:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FLAG_NONE 0
 # define FLAG_AIM 1u
 # define FLAG_HALFMOUSE 1u << 1
+# define FLAG_LOCKMOUSE 1u << 2
 
 enum				e_mousebutton
 {

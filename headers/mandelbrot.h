@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 15:09:02 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 17:04:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:19:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct		s_mandelbrot
 	t_fracval		zoom;
 	t_fracval		center_x;
 	t_fracval		center_y;
+	t_fracval		wx;
+	t_fracval		wy;
 	unsigned int	max_iterations;
 	unsigned int	n;
 }					t_mandelbrot;

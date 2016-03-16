@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 20:11:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:39:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 	else
 	{
-		c.flags = FLAG_NONE;
+		c.flags = FLAG_NONE | FLAG_LOCKMOUSE | FLAG_HALFMOUSE;
 		c.colormap = NULL;
 		set_defaults(&c);
 		ft_putendl("ready to work");

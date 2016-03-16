@@ -6,12 +6,11 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 00:49:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:01:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 #include <stdlib.h>
 
 inline static void	init_values(t_mandelbrot *m, t_context *c)
