@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 22:03:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 22:11:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int					closer(void *userdata);
 int					colors_init(int **colors, unsigned int size, t_context *c);
 int					fractal_loader_key(int keycode, t_context *c);
 void				fractal_loader(t_context *c, int ac, char **av);
+void				show_help(void);
 void				set_defaults(t_context *c);
 void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);

@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/16 22:00:44 by snicolet         ###   ########.fr        #
+#    Updated: 2016/03/16 22:11:46 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC=clang
 OBJ=main.o events.o mandelbrot.o rainbow.o \
 	julia.o sierpcarp.o sierptriangle.o defaults.o \
 	fractal_loader.o stats.o colormap.o closer.o events_mouse.o \
-	display.o burningship.o
+	display.o burningship.o help.o
 MLX_PATH=./libs/minilibx_macos
 DRAW_PATH=./libs/draw/
 DRAW=$(DRAW_PATH)libdraw.a

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 16:04:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 22:11:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int			main(int ac, char **av)
 	ft_putendl("Hello, i'm fractol !");
 	fractal_loader(&c, ac, av);
 	if (!c.f)
-		ft_printf("error: no renderer set : please use: \n\t%s\n\t%s\n\t%s\n",
-			"-m for mandelbrot",
-			"-j for julia",
-			"-r for rainbow");
+		show_help();
 	else if (!(c.x = draw_init("Fractol", SIZE_X, SIZE_Y)))
 		ft_putendl("error: failed to init window");
 	else
