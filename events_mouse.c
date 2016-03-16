@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 13:24:32 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 13:29:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:36:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			mouse_click(int button, int x, int y, t_context *c)
 	if (button == SCROLLUP)
 	{
 		c->zoom *= 0.9f;
-		if (!c->flags & FLAG_HALFMOUSE)
+		if (!(c->flags & FLAG_HALFMOUSE))
 		{
 			c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
 			c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;

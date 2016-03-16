@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 13:29:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/16 13:35:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,12 @@ static int	zoom_set(int keycode, t_context *c)
 	return (1);
 }
 
-static void	trigger_reddot(t_context *c)
+static void	trigger_flag(t_context *c, const size_t flag)
 {
-	if (!(c->flags & FLAG_AIM))
-		c->flags |= FLAG_AIM;
+	if (!(c->flags & flag))
+		c->flags |= flag;
 	else
-		c->flags = c->flags & ~FLAG_AIM;
-}
-
-static void	trigger_halfmouse(t_context *c)
-{
-	if (!(c->flags & FLAG_HALFMOUSE))
-		c->flags |= FLAG_HALFMOUSE;
-	else
-		c->flags = c->flags & ~FLAG_HALFMOUSE;
+		c->flags = c->flags & ~flag;
 }
 
 int			key_down(int keycode, t_context *c)
@@ -65,9 +57,9 @@ int			key_down(int keycode, t_context *c)
 	else if (keycode == KEY_R)
 		set_defaults(c);
 	else if (keycode == KEY_T)
-		trigger_reddot(c);
+		trigger_flag(c, FLAG_AIM);
 	else if (keycode == KEY_G)
-		trigger_halfmouse(c);
+		trigger_flag(c, FLAG_HALFMOUSE);
 	else
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
