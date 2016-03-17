@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 22:03:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 13:15:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	m->y1 = (t_fracval)-1.2f * m->zoom;
 	m->x1 -= m->center_x - zox;
 	m->y1 -= m->center_y + zoy;
+	if (c->flags & FLAG_AUTOITER)
+		m->max_iterations += (1.0f / c->zoom / 4.0f);
 }
 
 static unsigned int	mandelbrot_core(t_mandelbrot *m)

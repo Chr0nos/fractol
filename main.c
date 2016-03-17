@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 22:11:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 13:23:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int			main(int ac, char **av)
 {
 	t_context	c;
 
-	ft_putendl("Hello, i'm fractol !");
 	fractal_loader(&c, ac, av);
 	if (!c.f)
 		show_help();
@@ -34,6 +33,7 @@ int			main(int ac, char **av)
 		ft_putendl("error: failed to init window");
 	else
 	{
+		ft_putendl("Hello, i'm fractol !");
 		c.flags = FLAG_NONE | FLAG_LOCKMOUSE | FLAG_HALFMOUSE;
 		c.colormap = NULL;
 		set_defaults(&c);

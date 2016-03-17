@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 19:26:35 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 10:06:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 13:16:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	m->y1 = (t_fracval)-1.2f * m->zoom;
 	m->x1 -= m->center_x - zox;
 	m->y1 -= m->center_y + zoy;
+	if (c->flags & FLAG_AUTOITER)
+		m->max_iterations += (1.0f / c->zoom / 4.0f);
 }
 
 static unsigned int	burningship_core(t_mandelbrot *m)

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 16:05:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 16:05:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 13:02:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # define FLAG_AIM 1u
 # define FLAG_HALFMOUSE 1u << 1
 # define FLAG_LOCKMOUSE 1u << 2
+# define FLAG_AUTOITER 1u << 3
 
 #endif
