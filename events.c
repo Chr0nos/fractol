@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 15:22:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 10:47:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	zoom_set(int keycode, t_context *c)
 	return (1);
 }
 
-static void	trigger_flag(t_context *c, const size_t flag)
+void		trigger_flag(t_context *c, const size_t flag)
 {
 	if (!(c->flags & flag))
 		c->flags |= flag;
@@ -46,9 +46,7 @@ int			key_down(int keycode, t_context *c)
 	else if ((keycode == KEY_PLUS) || ((keycode == KEY_LESS) &&
 		(c->color_offset >= 8)))
 			c->color_offset += (keycode == KEY_PLUS) ? 8 : -8;
-	else if (fractal_loader_key(keycode, c))
-		;
-	else if (zoom_set(keycode, c))
+	else if ((fractal_loader_key(keycode, c)) || (zoom_set(keycode, c)))
 		;
 	else if (keycode == KEY_I)
 		c->iterator_offset *= 2;

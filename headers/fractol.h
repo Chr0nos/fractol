@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 22:11:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 10:48:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);
 void				burningship(t_context *c);
 void				fractol_stats(t_context *c);
+void				trigger_flag(t_context *c, const size_t flag);
 int					mouse_click(int button, int x, int y, t_context *c);
 int					key_down(int keycode, t_context *c);
 int					mouse_move(int x, int y, t_context *c);

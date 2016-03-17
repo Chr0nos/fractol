@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 13:24:32 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 15:25:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 10:48:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int			mouse_click(int button, int x, int y, t_context *c)
 	}
 	else if (button == SCROLLDOWN)
 		c->zoom *= 1.1;
+	else if (button == CLICKRIGHT)
+		trigger_flag(c, FLAG_LOCKMOUSE);
 	else if (button == CLICKLEFT)
 	{
 		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
@@ -49,10 +51,5 @@ int			mouse_move(int x, int y, t_context *c)
 	c->mouse.x = x;
 	c->mouse.y = y;
 	display(c);
-/*
-	c->zoom = (t_fracval)y / (t_fracval)(c->x->height - 1) / 2;
-	if (c->zoom < (t_fracval)0.000001f)
-		c->zoom = (t_fracval)0.000001f;
-*/
 	return (0);
 }
