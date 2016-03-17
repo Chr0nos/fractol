@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 11:52:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 12:27:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,24 @@
 
 static int	zoom_set(int keycode, t_context *c)
 {
+	t_fracval	extra;
+
+	if (sizeof(t_fracval) == sizeof(float))
+		extra = 0.0001f;
+	else
+		extra = 0.0000001f;
 	if (keycode == KEY_UP)
 		c->zoom *= 1.05f;
 	else if (keycode == KEY_DOWN)
 		c->zoom *= 0.95f;
-	else if ((keycode == KEY_A) || (keycode == KEY_D))
-		c->zoom_offsets.x += ((keycode == KEY_A) ? -0.15f : 0.15f) *
-			(c->zoom + (t_fracval)0.0000001f);
-	else if ((keycode == KEY_W) || (keycode == KEY_S))
-		c->zoom_offsets.y += ((keycode == KEY_W) ? -0.15f : 0.15f) *
-			(c->zoom + (t_fracval)0.000001f);
+	else if (keycode == KEY_A)
+		c->zoom_offsets.x -= 0.15f * (c->zoom + extra);
+	else if (keycode == KEY_D)
+		c->zoom_offsets.x += 0.15f * (c->zoom + extra);
+	else if (keycode == KEY_W)
+		c->zoom_offsets.y -= 0.15f * (c->zoom + extra);
+	else if (keycode == KEY_S)
+		c->zoom_offsets.y += 0.15f * (c->zoom + extra);
 	else if (keycode == KEY_PAGEUP)
 		c->zoom_offsets.z += 0.01f;
 	else if (keycode == KEY_PAGEDOWN)
@@ -49,7 +57,7 @@ int			key_down(int keycode, t_context *c)
 		closer(c);
 	else if ((keycode == KEY_PLUS) || ((keycode == KEY_LESS) &&
 		(c->color_offset >= 8)))
-			c->color_offset += (keycode == KEY_PLUS) ? 8 : -8;
+		c->color_offset += (keycode == KEY_PLUS) ? 8 : -8;
 	else if ((fractal_loader_key(keycode, c)) || (zoom_set(keycode, c)))
 		;
 	else if (keycode == KEY_I)
