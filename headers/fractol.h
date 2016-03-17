@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 10:48:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 18:20:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # define SIZE_X 1024
 # define SIZE_Y 768
 # define FRACTAL_COUNT 6
+# define THREADS 8
 # include "draw.h"
 # include "fractval.h"
+# include "context.h"
 # include "mandelbrot.h"
 # ifdef __APPLE__
 #  include "keycodes_mac.h"
@@ -33,22 +35,6 @@ enum				e_mousebutton
 	SCROLLDOWN = 5
 };
 
-typedef struct		s_context
-{
-	t_mlx			*x;
-	void			(*f)(struct s_context *);
-	void			(*post_display)(struct s_context *);
-	int				*colormap;
-	t_fracval		zoom;
-	t_vector		zoom_offsets;
-	int				color_offset;
-	unsigned int	iterator_offset;
-	int				keys_press;
-	t_vector		mouse;
-	t_vector		center;
-	size_t			flags;
-}					t_context;
-
 int					closer(void *userdata);
 int					colors_init(int **colors, unsigned int size, t_context *c);
 int					fractal_loader_key(int keycode, t_context *c);
@@ -57,6 +43,7 @@ void				show_help(void);
 void				set_defaults(t_context *c);
 void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);
+void				mandelbrot_threads(t_context *c);
 void				julia(t_context *c);
 void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);
