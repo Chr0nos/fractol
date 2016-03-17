@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 12:12:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 15:32:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/15 20:30:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	rainbow(t_context *c)
 	{
 		px.x = 0;
 		rgb = draw_color_hsv((int)((float)(h++ / 2) *
-					c->zoom + (c->zoom_offsets.y * 60.0f)), 1.0f, 1.0f);
+			c->zoom + (c->zoom_offsets.y * 60.0f)), 1.0f, 1.0f);
 		color = draw_color_rgb2int(&rgb);
 		while (px.x < c->x->width)
 		{

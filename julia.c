@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 22:35:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 15:44:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 10:31:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	m->y1 -= m->center_y + zoy;
 	m->wx = (t_fracval)c->x->width;
 	m->wy = (t_fracval)c->x->height;
+	m->c_re = -0.7f + (c->mouse.y / m->wy);
+	m->c_im = 0.27015f + (c->mouse.x / m->wx);
 }
 
-static unsigned int	julia_core(t_mandelbrot *m, t_fracval x, t_fracval y)
+static unsigned int	julia_core(t_mandelbrot *m)
 {
 	t_fracval				z_re;
 	t_fracval				z_im;
@@ -39,8 +41,8 @@ static unsigned int	julia_core(t_mandelbrot *m, t_fracval x, t_fracval y)
 	t_fracval				z_im2;
 	register unsigned int	n;
 
-	z_re = m->wx / x / 8.0f;
-	z_im = m->wy / y / 8.0f;
+	z_re = m->z_re;
+	z_im = m->z_im;
 	n = m->max_iterations;
 	while (n--)
 	{
@@ -67,13 +69,12 @@ void				julia(t_context *c)
 	px.x = c->x->width;
 	while (px.x--)
 	{
-		m.c_re = (t_fracval)(px.x * m.zoom) + m.x1;
+		m.z_re = (t_fracval)(px.x * m.zoom) + m.x1;
 		px.y = c->x->height;
 		while (px.y--)
 		{
-			m.c_im = (t_fracval)(px.y * m.zoom) + m.y1;
-			draw_px(c->x, &px, colors[julia_core(&m,
-				(t_fracval)(c->mouse.x + 1), (t_fracval)(c->mouse.y + 1))]);
+			m.z_im = (t_fracval)(px.y * m.zoom) + m.y1;
+			draw_px(c->x, &px, colors[julia_core(&m)]);
 		}
 	}
 }
