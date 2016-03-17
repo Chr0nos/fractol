@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 22:35:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 10:37:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 11:53:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	m->y1 -= m->center_y + zoy;
 	m->wx = (t_fracval)c->x->width;
 	m->wy = (t_fracval)c->x->height;
-	m->c_re = -0.7f + (c->mouse.y / m->wy);
-	m->c_im = 0.27015f + (c->mouse.x / m->wx);
+	m->c_re = -0.7f + (c->mouse.y / m->wy) + c->zoom_offsets.z;
+	m->c_im = 0.27015f + (c->mouse.x / m->wx + c->zoom_offsets.z);
 }
 
 static unsigned int	julia_core(t_mandelbrot *m)

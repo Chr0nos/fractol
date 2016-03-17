@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 10:47:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 11:52:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static int	zoom_set(int keycode, t_context *c)
 	else if ((keycode == KEY_W) || (keycode == KEY_S))
 		c->zoom_offsets.y += ((keycode == KEY_W) ? -0.15f : 0.15f) *
 			(c->zoom + (t_fracval)0.000001f);
+	else if (keycode == KEY_PAGEUP)
+		c->zoom_offsets.z += 0.01f;
+	else if (keycode == KEY_PAGEDOWN)
+		c->zoom_offsets.z -= 0.01f;
 	else
 		return (0);
 	return (1);

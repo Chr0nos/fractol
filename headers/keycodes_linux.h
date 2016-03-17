@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:38:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 15:21:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 11:50:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define KEY_ESC 65307
 # define KEY_UP 65364
 # define KEY_DOWN 65362
+# define KEY_PAGEUP -1
+# define KEY_PAGEDOWN -1
 # define KEY_A 97
 # define KEY_D 100
 # define KEY_W 119

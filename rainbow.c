@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 12:12:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/15 20:30:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 12:00:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "draw.h"
 
 void	rainbow(t_context *c)
 {
@@ -26,7 +27,7 @@ void	rainbow(t_context *c)
 	while (px.y < c->x->height)
 	{
 		px.x = 0;
-		rgb = draw_color_hsv((int)((float)(h++ / 2) *
+		rgb = draw_color_hsv((int)((float)(h++ / 2.2f) *
 			c->zoom + (c->zoom_offsets.y * 60.0f)), 1.0f, 1.0f);
 		color = draw_color_rgb2int(&rgb);
 		while (px.x < c->x->width)
