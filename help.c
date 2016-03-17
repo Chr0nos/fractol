@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 22:11:09 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 13:40:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/17 13:46:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	show_help(void)
 		"-j for julia",
 		"-r for rainbow",
 		"-b for burningship",
-		"-s for sierpcarp square",
-		"-t for sierpcarp triangle",
+		"-s for Sierpinski carpet",
+		"-t for Sierpinski triangle",
 		"\n---FRACTALS---",
 		"PAGEUP & PAGEDOWN : julia factor offsets\nq : quit",
 		"UP & DOWN : incrase/decrase zoom",
