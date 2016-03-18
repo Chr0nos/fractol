@@ -6,14 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 13:19:08 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 14:04:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 14:24:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
 #include <math.h>
-#include <pthread.h>
 
 inline static void	init_values(t_mandelbrot *m, t_context *c)
 {
