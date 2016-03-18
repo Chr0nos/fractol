@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   burningjulia.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/17 22:35:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 13:18:04 by snicolet         ###   ########.fr       */
+/*   Created: 2016/03/18 13:19:08 by snicolet          #+#    #+#             */
+/*   Updated: 2016/03/18 13:20:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "fractol.h"
 #include <stdlib.h>
@@ -36,7 +37,7 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 		m->max_iterations += (1.0f / c->zoom / 4.0f);
 }
 
-static unsigned int	julia_core(t_mandelbrot *m)
+static unsigned int	bjulia_core(t_mandelbrot *m)
 {
 	t_fracval				z_re;
 	t_fracval				z_im;
@@ -53,13 +54,13 @@ static unsigned int	julia_core(t_mandelbrot *m)
 		z_im2 = z_im * z_im;
 		if (z_re2 + z_im2 > 4)
 			return (n);
-		z_im = 2 * z_im * z_re + m->c_im;
+		z_im = fabs(2 * z_im * z_re + m->c_im);
 		z_re = z_re2 - z_im2 + m->c_re;
 	}
 	return (m->max_iterations);
 }
 
-static void			julia_start(t_context *c, t_mandelbrot *m,
+static void			bjulia_start(t_context *c, t_mandelbrot *m,
 	const int startx, const int endx)
 {
 	t_point			px;
@@ -73,24 +74,24 @@ static void			julia_start(t_context *c, t_mandelbrot *m,
 		while (px.y--)
 		{
 			m->z_im = (t_fracval)(px.y * m->zoom) + m->y1;
-			draw_px(c->x, &px, colors[julia_core(m)]);
+			draw_px(c->x, &px, colors[bjulia_core(m)]);
 		}
 	}
 }
 
-static void			*julia_start_thread(void *x)
+static void			*bjulia_start_thread(void *x)
 {
 	t_mandelthread	*t;
 	int				blocksize;
 
 	t = x;
 	blocksize = t->c->x->width / THREADS;
-	julia_start(t->c, &t->m, blocksize * t->id,
+	bjulia_start(t->c, &t->m, blocksize * t->id,
 		(blocksize * t->id) - blocksize);
 	return (0);
 }
 
-void				julia(t_context *c)
+void				burningjulia(t_context *c)
 {
 	t_mandelthread	t[THREADS];
 	pthread_t		threads[THREADS];
@@ -106,7 +107,7 @@ void				julia(t_context *c)
 		if (p)
 			t[p] = t[0];
 		t[p].id = p + 1;
-		pthread_create(&threads[p], NULL, julia_start_thread, &t[p]);
+		pthread_create(&threads[p], NULL, bjulia_start_thread, &t[p]);
 	}
 	p = THREADS;
 	while (p--)

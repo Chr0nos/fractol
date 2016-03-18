@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 11:59:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 13:20:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 # define SIZE_X 1024
 # define SIZE_Y 768
-# define FRACTAL_COUNT 6
+# define FRACTAL_COUNT 7
 # define THREADS 8
 # include "draw.h"
 # include "fractval.h"
@@ -45,6 +45,7 @@ void				rainbow(t_context *c);
 void				mandelbrot(t_context *c);
 void				mandelbrot_threads(t_context *c);
 void				julia(t_context *c);
+void				burningjulia(t_context *c);
 void				sierpcarp(t_context *c);
 void				sierptriangle(t_context *c);
 void				burningship(t_context *c);

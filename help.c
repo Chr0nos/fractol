@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 22:11:09 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 09:45:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 13:22:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	show_help(void)
 {
 	unsigned int	p;
 	const char		*lines[HELP_LINES] = { "-m for mandelbrot",
-		"-j for julia",
+		"-j for julia\n-J for burning julia",
 		"-r for rainbow",
 		"-b for burningship",
 		"-s for Sierpinski carpet",
