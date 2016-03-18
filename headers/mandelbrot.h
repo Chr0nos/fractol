@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 15:09:02 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 10:56:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 13:58:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_mandelthread
 {
 	t_mandelbrot	m;
 	t_context		*c;
+	void			(*core)(t_context *, t_mandelbrot *, const int, const int);
 	int				id;
 	int				padding;
 }					t_mandelthread;

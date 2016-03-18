@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 12:52:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 14:05:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,37 +73,7 @@ static void			mandelbrot_start(t_context *c, t_mandelbrot *m,
 	}
 }
 
-static void			*mandelbrot_start_thread(void *x)
-{
-	t_mandelthread	*t;
-	int				blocksize;
-
-	t = x;
-	blocksize = t->c->x->width / THREADS;
-	mandelbrot_start(t->c, &t->m, blocksize * t->id,
-		(blocksize * t->id) - blocksize);
-	return (0);
-}
-
 void				mandelbrot(t_context *c)
 {
-	t_mandelthread	t[THREADS];
-	pthread_t		threads[THREADS];
-	int				p;
-
-	init_values(&t[0].m, c);
-	if (!(colors_init(&c->colormap, t[0].m.max_iterations, c)))
-		return ;
-	t[0].c = c;
-	p = THREADS;
-	while (p--)
-	{
-		if (p)
-			t[p] = t[0];
-		t[p].id = p + 1;
-		pthread_create(&threads[p], NULL, mandelbrot_start_thread, &t[p]);
-	}
-	p = THREADS;
-	while (p--)
-		pthread_join(threads[p], NULL);
+	mandelthread(c, &init_values, &generic_start_thread, &mandelbrot_start);
 }

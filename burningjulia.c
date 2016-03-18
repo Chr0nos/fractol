@@ -6,10 +6,9 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 13:19:08 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 13:20:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 14:04:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fractol.h"
 #include <stdlib.h>
@@ -79,37 +78,7 @@ static void			bjulia_start(t_context *c, t_mandelbrot *m,
 	}
 }
 
-static void			*bjulia_start_thread(void *x)
-{
-	t_mandelthread	*t;
-	int				blocksize;
-
-	t = x;
-	blocksize = t->c->x->width / THREADS;
-	bjulia_start(t->c, &t->m, blocksize * t->id,
-		(blocksize * t->id) - blocksize);
-	return (0);
-}
-
 void				burningjulia(t_context *c)
 {
-	t_mandelthread	t[THREADS];
-	pthread_t		threads[THREADS];
-	int				p;
-
-	init_values(&t[0].m, c);
-	if (!(colors_init(&c->colormap, t[0].m.max_iterations, c)))
-		return ;
-	t[0].c = c;
-	p = THREADS;
-	while (p--)
-	{
-		if (p)
-			t[p] = t[0];
-		t[p].id = p + 1;
-		pthread_create(&threads[p], NULL, bjulia_start_thread, &t[p]);
-	}
-	p = THREADS;
-	while (p--)
-		pthread_join(threads[p], NULL);
+	mandelthread(c, &init_values, &generic_start_thread, &bjulia_start);
 }
