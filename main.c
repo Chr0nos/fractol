@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:07:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 13:23:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 12:13:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			main(int ac, char **av)
 	else
 	{
 		ft_putendl("Hello, i'm fractol !");
-		c.flags = FLAG_NONE | FLAG_LOCKMOUSE | FLAG_HALFMOUSE;
+		c.flags = FLAG_NONE | FLAG_LOCKMOUSE | FLAG_HALFMOUSE | FLAG_NOSTATS;
 		c.colormap = NULL;
 		set_defaults(&c);
 		ft_putendl("ready to work");
