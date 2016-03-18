@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 15:09:02 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 10:20:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 10:56:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,13 @@ typedef struct		s_mandelbrot
 	unsigned int	max_iterations;
 	unsigned int	n;
 }					t_mandelbrot;
+
+typedef struct		s_mandelthread
+{
+	t_mandelbrot	m;
+	t_context		*c;
+	int				id;
+	int				padding;
+}					t_mandelthread;
 
 #endif

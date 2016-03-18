@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/16 22:11:46 by snicolet         ###   ########.fr        #
+#    Updated: 2016/03/18 11:04:14 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ DRAW_PATH=./libs/draw/
 DRAW=$(DRAW_PATH)libdraw.a
 LIBFT_PATH=./libs/libft/
 LIBFT=$(LIBFT_PATH)libft.a
-LINKER=-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L$(MLX_PATH) -lmlx -framework AppKit -framework OpenGL
+LINKER=-L$(DRAW_PATH) -ldraw -lpthread -L$(LIBFT_PATH) -lft -lm -L$(MLX_PATH) -lmlx -framework AppKit -framework OpenGL
 
 all: $(NAME)
 
@@ -51,6 +51,6 @@ $(LIBFT):
 	make -C $(LIBFT_PATH)
 
 linux:
-	make -w LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" MLX_PATH="./libs/minilibx" all
+	make -w LINKER="-L$(DRAW_PATH) -ldraw -L$(LIBFT_PATH) -lpthread -lft -lm -L./libs/minilibx -lmlx -lX11 -lXext" MLX_PATH="./libs/minilibx" all
 
 .PHONY: clean fclean re relibs all linux

@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 10:09:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 11:02:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
+#include <pthread.h>
 
 inline static void	init_values(t_mandelbrot *m, t_context *c)
 {
@@ -54,12 +55,13 @@ static unsigned int	mandelbrot_core(t_mandelbrot *m)
 }
 
 static void			mandelbrot_start(t_context *c, t_mandelbrot *m,
-	const int *colors)
+	const int startx, const int endx)
 {
 	t_point			px;
+	const int		*colors = c->colormap;
 
-	px.x = c->x->width;
-	while (px.x--)
+	px.x = startx;
+	while (px.x-- > endx)
 	{
 		m->c_re = (t_fracval)(px.x * m->zoom) + m->x1;
 		px.y = c->x->height;
@@ -71,12 +73,42 @@ static void			mandelbrot_start(t_context *c, t_mandelbrot *m,
 	}
 }
 
+static void			*mandelbrot_start_thread(void *x)
+{
+	t_mandelthread	*t;
+	int				startx;
+	int				endx;
+
+	t = x;
+	startx = t->c->x->width / t->id;
+	endx = t->c->x->width >> t->id;
+	if (t->id == 2)
+		endx = 0;
+	mandelbrot_start(t->c, &t->m, startx, endx);
+	return (0);
+}
+
 void				mandelbrot(t_context *c)
 {
 	t_mandelbrot	m;
+	t_mandelthread	t[THREADS];
+	pthread_t		threads[THREADS];
+	int				p;
 
 	init_values(&m, c);
 	if (!(colors_init(&c->colormap, m.max_iterations, c)))
 		return ;
-	mandelbrot_start(c, &m, c->colormap);
+	t[0].c = c;
+	t[0].m = m;
+	p = THREADS;
+	while (p--)
+	{
+		if (p)
+			t[p] = t[0];
+		t[p].id = p + 1;
+		pthread_create(&threads[p], NULL, mandelbrot_start_thread, &t[p]);
+	}
+	p = THREADS;
+	while (p--)
+		pthread_join(threads[p], NULL);
 }
