@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 13:15:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 10:09:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,30 @@ static unsigned int	mandelbrot_core(t_mandelbrot *m)
 	return (m->max_iterations);
 }
 
+static void			mandelbrot_start(t_context *c, t_mandelbrot *m,
+	const int *colors)
+{
+	t_point			px;
+
+	px.x = c->x->width;
+	while (px.x--)
+	{
+		m->c_re = (t_fracval)(px.x * m->zoom) + m->x1;
+		px.y = c->x->height;
+		while (px.y--)
+		{
+			m->c_im = (t_fracval)(px.y * m->zoom) + m->y1;
+			draw_px(c->x, &px, colors[mandelbrot_core(m)]);
+		}
+	}
+}
+
 void				mandelbrot(t_context *c)
 {
 	t_mandelbrot	m;
-	t_point			px;
-	const int		*colors;
 
 	init_values(&m, c);
 	if (!(colors_init(&c->colormap, m.max_iterations, c)))
 		return ;
-	colors = c->colormap;
-	px.x = c->x->width;
-	while (px.x--)
-	{
-		m.c_re = (t_fracval)(px.x * m.zoom) + m.x1;
-		px.y = c->x->height;
-		while (px.y--)
-		{
-			m.c_im = (t_fracval)(px.y * m.zoom) + m.y1;
-			draw_px(c->x, &px, colors[mandelbrot_core(&m)]);
-		}
-	}
+	mandelbrot_start(c, &m, c->colormap);
 }
