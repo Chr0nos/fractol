@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 11:13:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 11:59:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define SIZE_X 1024
 # define SIZE_Y 768
 # define FRACTAL_COUNT 6
-# define THREADS 4
+# define THREADS 8
 # include "draw.h"
 # include "fractval.h"
 # include "context.h"

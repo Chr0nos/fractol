@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 12:11:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 12:23:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,11 @@ static void			*mandelbrot_start_thread(void *x)
 {
 	t_mandelthread	*t;
 	int				blocksize;
-	int				startx;
-	int				endx;
 
 	t = x;
 	blocksize = t->c->x->width / THREADS;
-	startx = blocksize * t->id;
-	endx = startx - blocksize;
-	mandelbrot_start(t->c, &t->m, startx, endx);
+	mandelbrot_start(t->c, &t->m, blocksize * t->id,
+		(blocksize * t->id) - blocksize);
 	return (0);
 }
 

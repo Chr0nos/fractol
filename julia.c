@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 22:35:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 12:12:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 12:22:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,11 @@ static void			*julia_start_thread(void *x)
 {
 	t_mandelthread	*t;
 	int				blocksize;
-	int				startx;
-	int				endx;
 
 	t = x;
 	blocksize = t->c->x->width / THREADS;
-	startx = blocksize * t->id;
-	endx = startx - blocksize;
-	julia_start(t->c, &t->m, startx, endx);
+	julia_start(t->c, &t->m, blocksize * t->id,
+		(blocksize * t->id) - blocksize);
 	return (0);
 }
 
