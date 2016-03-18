@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 22:35:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 13:16:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 12:09:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
 #include <math.h>
+#include <pthread.h>
 
 inline static void	init_values(t_mandelbrot *m, t_context *c)
 {
@@ -58,25 +59,61 @@ static unsigned int	julia_core(t_mandelbrot *m)
 	return (m->max_iterations);
 }
 
+static void			julia_start(t_context *c, t_mandelbrot *m,
+	const int startx, const int endx)
+{
+	t_point			px;
+	const int		*colors = c->colormap;
+
+	px.x = startx;
+	while (px.x-- > endx)
+	{
+		m->z_re = (t_fracval)(px.x * m->zoom) + m->x1;
+		px.y = c->x->height;
+		while (px.y--)
+		{
+			m->z_im = (t_fracval)(px.y * m->zoom) + m->y1;
+			draw_px(c->x, &px, colors[julia_core(m)]);
+		}
+	}
+}
+
+static void			*julia_start_thread(void *x)
+{
+	t_mandelthread	*t;
+	int				blocksize;
+	int				startx;
+	int				endx;
+
+	t = x;
+	blocksize = t->c->x->width / THREADS;
+	startx = blocksize * t->id;
+	endx = startx - blocksize;
+	julia_start(t->c, &t->m, startx, endx);
+	return (0);
+}
+
 void				julia(t_context *c)
 {
 	t_mandelbrot	m;
-	t_point			px;
-	const int		*colors;
+	t_mandelthread	t[THREADS];
+	pthread_t		threads[THREADS];
+	int				p;
 
 	init_values(&m, c);
 	if (!(colors_init(&c->colormap, m.max_iterations, c)))
 		return ;
-	colors = c->colormap;
-	px.x = c->x->width;
-	while (px.x--)
+	t[0].c = c;
+	t[0].m = m;
+	p = THREADS;
+	while (p--)
 	{
-		m.z_re = (t_fracval)(px.x * m.zoom) + m.x1;
-		px.y = c->x->height;
-		while (px.y--)
-		{
-			m.z_im = (t_fracval)(px.y * m.zoom) + m.y1;
-			draw_px(c->x, &px, colors[julia_core(&m)]);
-		}
+		if (p)
+			t[p] = t[0];
+		t[p].id = p + 1;
+		pthread_create(&threads[p], NULL, julia_start_thread, &t[p]);
 	}
+	p = THREADS;
+	while (p--)
+		pthread_join(threads[p], NULL);
 }
