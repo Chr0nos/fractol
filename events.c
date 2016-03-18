@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/15 16:15:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 13:04:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 09:42:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ void		trigger_flag(t_context *c, const size_t flag)
 		c->flags = c->flags & ~flag;
 }
 
+static int	key_down_extra(int keycode, t_context *c)
+{
+	if (keycode == KEY_N)
+		trigger_flag(c, FLAG_NOSTATS);
+	else
+		return (0);
+	return (1);
+}
+
 int			key_down(int keycode, t_context *c)
 {
 	if ((keycode == KEY_ESC) || (keycode == KEY_Q))
@@ -74,7 +83,7 @@ int			key_down(int keycode, t_context *c)
 		trigger_flag(c, FLAG_LOCKMOUSE);
 	else if (keycode == KEY_K)
 		trigger_flag(c, FLAG_AUTOITER);
-	else
+	else if (!key_down_extra(keycode, c))
 		ft_printf("keydown: %d\n", keycode);
 	display(c);
 	return (0);

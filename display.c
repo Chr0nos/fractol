@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 15:48:09 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/16 15:48:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/18 09:43:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int			display(t_context *c)
 	if (c->flags & FLAG_AIM)
 		reddot(c);
 	draw_flush_image(c->x, c->x->img);
-	fractol_stats(c);
+	if (!(c->flags & FLAG_NOSTATS))
+		fractol_stats(c);
 	if (c->post_display != NULL)
 		c->post_display(c);
 	return (0);
