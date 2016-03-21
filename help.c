@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 22:11:09 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 13:22:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/21 22:51:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	show_help(void)
 		"W A S D : move to -Y -X +Y +X\nn : toggle stats overlay",
 		"l : lock the mouse\nk : use inteligent iterations mode",
 		"r : reset to default\nt : toggle target\ng : toggle positional zoom",
-		"i : incrase iterations",
+		"i : incrase iterations\nh : toggle horizontal scrolls controls",
 		"o : decrase iterations",
 		"+ - : change colors",
 		"numeric pad: switch to an other fractal",
