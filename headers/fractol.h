@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 01:08:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 14:06:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:19:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ enum				e_mousebutton
 	CLICKLEFT = 1,
 	CLICKRIGHT = 2,
 	SCROLLUP = 4,
-	SCROLLDOWN = 5
+	SCROLLDOWN = 5,
+	SCROLLLEFT = 7,
+	SCROLLRIGHT = 6
 };
 
 void				mandelthread(t_context *c,

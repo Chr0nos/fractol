@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 13:24:32 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/17 10:48:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/03/21 19:21:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int			mouse_click(int button, int x, int y, t_context *c)
 		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
 		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
 	}
+	else if (button == SCROLLLEFT)
+		c->iterator_offset *= 2;
+	else if (button == SCROLLRIGHT)
+		c->iterator_offset /= (c->iterator_offset > 2) ? 2 : 1;
 	else
 	{
 		ft_printf("mouse unsupported click: %d x:%d y:%d\n", button, x, y);
