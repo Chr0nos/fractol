@@ -20,19 +20,19 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	const t_fracval	zoy = c->zoom_offsets.y;
 
 	m->max_iterations = 64 + c->iterator_offset;
-	m->zoom = (t_fracval)0.003f * c->zoom;
+	m->zoom = (t_fracval)0.003 * c->zoom;
 	m->center_x = (t_fracval)(c->center.x) * m->zoom;
 	m->center_y = (t_fracval)(c->center.y) * m->zoom;
-	m->x1 = (t_fracval)-2.0f * m->zoom;
-	m->y1 = (t_fracval)0.7f * m->zoom;
+	m->x1 = (t_fracval)-2.0 * m->zoom;
+	m->y1 = (t_fracval)0.7 * m->zoom;
 	m->x1 -= m->center_x - zox;
 	m->y1 -= m->center_y + zoy;
 	m->wx = (t_fracval)c->x->width;
 	m->wy = (t_fracval)c->x->height;
-	m->c_re = -0.7f + (c->mouse.y / m->wy) + c->zoom_offsets.z;
-	m->c_im = 0.27015f + (c->mouse.x / m->wx + c->zoom_offsets.z);
+	m->c_re = -0.7 + (c->mouse.y / m->wy) + c->zoom_offsets.z;
+	m->c_im = 0.27015 + (c->mouse.x / m->wx + c->zoom_offsets.z);
 	if (c->flags & FLAG_AUTOITER)
-		m->max_iterations += (1.0f / c->zoom / 4.0f);
+		m->max_iterations += (1.0 / c->zoom / 4.0);
 }
 
 static unsigned int	julia_core(t_mandelbrot *m)

@@ -31,11 +31,11 @@ int			mouse_click(int button, int x, int y, t_context *c)
 {
 	if (button == SCROLLUP)
 	{
-		c->zoom *= 0.9f;
+		c->zoom *= 0.9;
 		if (!(c->flags & FLAG_HALFMOUSE))
 		{
-			c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
-			c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
+			c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003;
+			c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003;
 		}
 	}
 	else if (button == SCROLLDOWN)
@@ -44,8 +44,8 @@ int			mouse_click(int button, int x, int y, t_context *c)
 		trigger_flag(c, FLAG_LOCKMOUSE);
 	else if (button == CLICKLEFT)
 	{
-		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003f;
-		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003f;
+		c->zoom_offsets.x -= ((c->x->width / 2) - x) * c->zoom * 0.003;
+		c->zoom_offsets.y += ((c->x->height / 2) - y) * c->zoom * 0.003;
 	}
 	else if (mouse_hscroll(button, c))
 		;

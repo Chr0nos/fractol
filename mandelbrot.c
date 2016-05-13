@@ -19,15 +19,15 @@ inline static void	init_values(t_mandelbrot *m, t_context *c)
 	const t_fracval	zoy = c->zoom_offsets.y;
 
 	m->max_iterations = 64 + c->iterator_offset;
-	m->zoom = (t_fracval)0.003f * c->zoom;
+	m->zoom = (t_fracval)0.003 * c->zoom;
 	m->center_x = (t_fracval)(c->center.x) * m->zoom;
 	m->center_y = (t_fracval)(c->center.y) * m->zoom;
-	m->x1 = (t_fracval)-2.1f * m->zoom;
-	m->y1 = (t_fracval)-1.2f * m->zoom;
+	m->x1 = (t_fracval)-2.1 * m->zoom;
+	m->y1 = (t_fracval)-1.2 * m->zoom;
 	m->x1 -= m->center_x - zox;
 	m->y1 -= m->center_y + zoy;
 	if (c->flags & FLAG_AUTOITER)
-		m->max_iterations += (1.0f / c->zoom / 4.0f);
+		m->max_iterations += (1.0 / c->zoom / 4.0);
 }
 
 static unsigned int	mandelbrot_core(t_mandelbrot *m)
@@ -38,8 +38,8 @@ static unsigned int	mandelbrot_core(t_mandelbrot *m)
 	t_fracval				z_im2;
 	register unsigned int	n;
 
-	z_re = 0.0f;
-	z_im = 0.0f;
+	z_re = 0.0;
+	z_im = 0.0;
 	n = m->max_iterations;
 	while (n--)
 	{

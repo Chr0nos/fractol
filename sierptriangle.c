@@ -28,8 +28,8 @@ inline static int	sierptriangle_zoom(int x, double zoom)
 void				sierptriangle(t_context *c)
 {
 	t_point		px;
-	const int	start_x = (int)(c->zoom_offsets.x * 220.0f);
-	const int	start_y = (int)(c->zoom_offsets.y * 220.0f);
+	const int	start_x = (int)(c->zoom_offsets.x * 220.0);
+	const int	start_y = (int)(c->zoom_offsets.y * 220.0);
 
 	px.y = c->x->height;
 	while (px.y--)

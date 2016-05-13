@@ -27,8 +27,8 @@ void	rainbow(t_context *c)
 	while (px.y < c->x->height)
 	{
 		px.x = 0;
-		rgb = draw_color_hsv((int)((float)(h++ / 2.2f) *
-			c->zoom + (zoy * 60.0f)), 1.0f, 1.0f);
+		rgb = draw_color_hsv((int)((double)(h++ / 2.2) *
+			c->zoom + (zoy * 60.0)), 1.0, 1.0);
 		color = draw_color_rgb2int(&rgb);
 		while (px.x < c->x->width)
 		{

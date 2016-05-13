@@ -14,16 +14,16 @@
 
 void	set_defaults(t_context *c)
 {
-	c->zoom = 1.0f;
-	c->zoom_offsets.x = 0.0f;
-	c->zoom_offsets.y = 0.0f;
-	c->zoom_offsets.z = 0.0f;
+	c->zoom = 1.0;
+	c->zoom_offsets.x = 0.0;
+	c->zoom_offsets.y = 0.0;
+	c->zoom_offsets.z = 0.0;
 	c->iterator_offset = 1;
 	c->color_offset = 0;
-	c->mouse.x = 0.0f;
-	c->mouse.y = 0.0f;
-	c->mouse.z = 0.0f;
-	c->center.x = (float)c->x->width / 2;
-	c->center.y = (float)c->x->height / 2;
-	c->center.z = 0.0f;
+	c->mouse.x = 0.0;
+	c->mouse.y = 0.0;
+	c->mouse.z = 0.0;
+	c->center.x = (double)c->x->width / 2;
+	c->center.y = (double)c->x->height / 2;
+	c->center.z = 0.0;
 }

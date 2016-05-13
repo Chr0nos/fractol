@@ -19,25 +19,25 @@ static int	zoom_set(int keycode, t_context *c)
 	t_fracval	extra;
 
 	if (sizeof(t_fracval) == sizeof(float))
-		extra = 0.0001f;
+		extra = 0.0001;
 	else
-		extra = 0.0000001f;
+		extra = 0.0000001;
 	if (keycode == KEY_UP)
-		c->zoom *= 1.05f;
+		c->zoom *= 1.05;
 	else if (keycode == KEY_DOWN)
-		c->zoom *= 0.95f;
+		c->zoom *= 0.95;
 	else if (keycode == KEY_A)
-		c->zoom_offsets.x -= 0.15f * (c->zoom + extra);
+		c->zoom_offsets.x -= 0.15 * (c->zoom + extra);
 	else if (keycode == KEY_D)
-		c->zoom_offsets.x += 0.15f * (c->zoom + extra);
+		c->zoom_offsets.x += 0.15 * (c->zoom + extra);
 	else if (keycode == KEY_W)
-		c->zoom_offsets.y -= 0.15f * (c->zoom + extra);
+		c->zoom_offsets.y -= 0.15 * (c->zoom + extra);
 	else if (keycode == KEY_S)
-		c->zoom_offsets.y += 0.15f * (c->zoom + extra);
+		c->zoom_offsets.y += 0.15 * (c->zoom + extra);
 	else if (keycode == KEY_PAGEUP)
-		c->zoom_offsets.z += 0.01f;
+		c->zoom_offsets.z += 0.01;
 	else if (keycode == KEY_PAGEDOWN)
-		c->zoom_offsets.z -= 0.01f;
+		c->zoom_offsets.z -= 0.01;
 	else
 		return (0);
 	return (1);

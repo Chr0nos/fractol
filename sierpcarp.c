@@ -28,8 +28,8 @@ static int			sierpcarp_draw(int x, int y)
 void				sierpcarp(t_context *c)
 {
 	t_point		px;
-	const int	start_x = (int)(c->zoom_offsets.x * 220.0f);
-	const int	start_y = (int)(c->zoom_offsets.y * 220.0f);
+	const int	start_x = (int)(c->zoom_offsets.x * 220.0);
+	const int	start_y = (int)(c->zoom_offsets.y * 220.0);
 
 	px.y = 0;
 	while (px.y < c->x->height)
@@ -38,8 +38,8 @@ void				sierpcarp(t_context *c)
 		while (px.x < c->x->width)
 		{
 			draw_px(c->x, &px,
-				sierpcarp_draw((int)(((float)px.x - (float)start_x) * c->zoom),
-				(int)((((float)px.y - (float)start_y) * c->zoom))));
+				sierpcarp_draw((int)(((double)px.x - (double)start_x) * c->zoom),
+				(int)((((double)px.y - (double)start_y) * c->zoom))));
 			px.x++;
 		}
 		px.y++;
