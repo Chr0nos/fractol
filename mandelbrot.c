@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:09:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/03/18 14:23:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 19:24:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ static unsigned int	mandelbrot_core(t_mandelbrot *m)
 static void			mandelbrot_start(t_context *c, t_mandelbrot *m,
 	const int startx, const int endx)
 {
+	int				*pixels;
 	t_point			px;
 	const int		*colors = c->colormap;
 
+	pixels = (int*)(unsigned long)c->x->img->data;
 	px.x = startx;
 	while (px.x-- > endx)
 	{
@@ -67,7 +69,7 @@ static void			mandelbrot_start(t_context *c, t_mandelbrot *m,
 		while (px.y--)
 		{
 			m->c_im = (t_fracval)(px.y * m->zoom) + m->y1;
-			draw_px(c->x, &px, colors[mandelbrot_core(m)]);
+			pixels[px.y * c->x->width + px.x] = colors[mandelbrot_core(m)];
 		}
 	}
 }
