@@ -26,7 +26,7 @@ LINKER=-L$(DRAW_PATH) -ldraw -lpthread -L$(LIBFT_PATH) -lft -lm -L$(MLX_PATH) -l
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(DRAW) $(LIBFT)
+$(NAME): $(LIBFT) $(DRAW) $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LINKER) $(FLAGS)
 
 %.o: %.c
@@ -47,7 +47,11 @@ relibs: re
 $(DRAW):
 	make -C $(DRAW_PATH) MLX=../../$(MLX_PATH)
 
-$(LIBFT):
+$(LIBFT)/Makefile:
+	git submodule init
+	git submodule update
+
+$(LIBFT): $(LIBFT)/Makefile
 	make -C $(LIBFT_PATH)
 
 linux:
