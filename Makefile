@@ -6,12 +6,12 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/13 01:09:09 by snicolet          #+#    #+#              #
-#    Updated: 2016/03/18 13:44:17 by snicolet         ###   ########.fr        #
+#*   Updated: 2017/10/13 12:54:24 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fractol
-FLAGS=-Wall -Werror -Wextra -Weverything -Ofast -march=native -mtune=native -pipe -fomit-frame-pointer
+FLAGS=-Wall -Werror -Wextra -Weverything -Wno-strict-prototypes -Ofast -march=native -mtune=native -pipe -fomit-frame-pointer
 CC=clang
 OBJ=main.o events.o mandelbrot.o rainbow.o \
 	julia.o sierpcarp.o sierptriangle.o defaults.o \
