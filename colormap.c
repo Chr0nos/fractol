@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:28:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 02:14:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:11:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ inline static int	color_px(const unsigned int max_iterations,
 
 	angle = 180 + color_offset;
 	facteur = (float)n / (float)max_iterations;
-	angle = (int)((float)angle * facteur);
+	//angle = (int)((float)angle * facteur);
 	rgb = draw_color_hsv(angle, 1.0f, facteur);
 	return (draw_color_rgb2int(&rgb));
 }
